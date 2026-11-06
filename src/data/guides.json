@@ -1,0 +1,572 @@
+[
+  {
+    "id": "wifi_cannot_connect",
+    "categoryId": "internet_wifi",
+    "title": "Computer will not connect to Wi-Fi",
+    "description": "Use basic checks when your computer cannot join a wireless network.",
+    "difficulty": "easy",
+    "estimatedMinutes": 10,
+    "possibleCauses": ["Wi-Fi is turned off", "Airplane mode is on", "The saved password is out of date", "The router is not available"],
+    "safetyWarning": "Before forgetting a saved network, make sure you know its password. Restarting a shared router briefly disconnects everyone using it. Do not press the router's factory reset button.",
+    "requiredTools": [],
+    "steps": [
+      { "id": "wifi_cannot_connect_step_01", "order": 1, "instruction": "Check that Wi-Fi is turned on and Airplane mode is off in your computer's network settings." },
+      { "id": "wifi_cannot_connect_step_02", "order": 2, "instruction": "Choose the correct network name and carefully re-enter its password." },
+      { "id": "wifi_cannot_connect_step_03", "order": 3, "instruction": "Move closer to the router and try connecting again." },
+      { "id": "wifi_cannot_connect_step_04", "order": 4, "instruction": "If other devices also cannot connect, ask the network owner before restarting the router and modem using their normal power controls." },
+      { "id": "wifi_cannot_connect_step_05", "order": 5, "instruction": "If the computer still cannot connect, note any message shown and ask your network administrator or internet provider for help." }
+    ],
+    "sources": ["https://support.microsoft.com/en-us/windows/experience/connectivity-networking/fix-wi-fi-connection-issues-in-windows"]
+  },
+  {
+    "id": "wifi_connected_no_internet",
+    "categoryId": "internet_wifi",
+    "title": "Wi-Fi is connected but internet pages will not load",
+    "description": "Find out whether the problem affects one computer, one website, or the whole network.",
+    "difficulty": "easy",
+    "estimatedMinutes": 10,
+    "possibleCauses": ["The internet service is temporarily unavailable", "The router has lost its connection", "A browser or app is having a problem"],
+    "safetyWarning": "A router restart interrupts other users. Ask first, and use its power control only; do not factory reset it.",
+    "requiredTools": [],
+    "steps": [
+      { "id": "wifi_connected_no_internet_step_01", "order": 1, "instruction": "Try opening a different, familiar website or app to check whether only one service is affected." },
+      { "id": "wifi_connected_no_internet_step_02", "order": 2, "instruction": "Check another device on the same Wi-Fi. If it also has no internet, the issue may be with the router or internet service." },
+      { "id": "wifi_connected_no_internet_step_03", "order": 3, "instruction": "Turn Wi-Fi off and back on on the affected computer, then reconnect to the network." },
+      { "id": "wifi_connected_no_internet_step_04", "order": 4, "instruction": "If several devices are affected, ask the network owner to check the modem and router status lights and restart them using the manufacturer's normal instructions." },
+      { "id": "wifi_connected_no_internet_step_05", "order": 5, "instruction": "If the connection remains unavailable, contact the internet provider or network administrator and share which devices are affected." }
+    ],
+    "sources": ["https://support.microsoft.com/en-us/windows/experience/connectivity-networking/fix-wi-fi-connection-issues-in-windows"]
+  },
+  {
+    "id": "wifi_slow_connection",
+    "categoryId": "internet_wifi",
+    "title": "Wi-Fi feels unusually slow",
+    "description": "Check signal, other devices, and heavy network use before changing router settings.",
+    "difficulty": "easy",
+    "estimatedMinutes": 10,
+    "possibleCauses": ["Weak signal or obstacles", "Several devices are using the connection", "A download or stream is using network capacity", "A wider service issue"],
+    "safetyWarning": null,
+    "requiredTools": [],
+    "steps": [
+      { "id": "wifi_slow_connection_step_01", "order": 1, "instruction": "Move closer to the router and check whether the signal improves." },
+      { "id": "wifi_slow_connection_step_02", "order": 2, "instruction": "Pause downloads, cloud backups, or high-quality video streams that you recognize and do not currently need." },
+      { "id": "wifi_slow_connection_step_03", "order": 3, "instruction": "Check another device on the same network. If all devices are slow, the cause may be outside this computer." },
+      { "id": "wifi_slow_connection_step_04", "order": 4, "instruction": "If practical, test again later and note whether the slowdown happens at particular times or in particular rooms." },
+      { "id": "wifi_slow_connection_step_05", "order": 5, "instruction": "If the problem continues across devices, ask the network owner or internet provider to check the connection." }
+    ],
+    "sources": ["https://support.microsoft.com/en-us/windows/experience/connectivity-networking/fix-wi-fi-connection-issues-in-windows"]
+  },
+  {
+    "id": "wifi_keeps_disconnecting",
+    "categoryId": "internet_wifi",
+    "title": "Wi-Fi keeps disconnecting",
+    "description": "Compare the connection on nearby devices and look for a signal or router pattern.",
+    "difficulty": "easy",
+    "estimatedMinutes": 12,
+    "possibleCauses": ["Weak or obstructed wireless signal", "Low power in a wireless device", "A temporary router or computer issue", "A network service problem"],
+    "safetyWarning": "Ask before restarting a shared router because it disconnects other users.",
+    "requiredTools": [],
+    "steps": [
+      { "id": "wifi_keeps_disconnecting_step_01", "order": 1, "instruction": "Notice whether the disconnections happen in one room or everywhere, and whether other devices disconnect at the same time." },
+      { "id": "wifi_keeps_disconnecting_step_02", "order": 2, "instruction": "Move closer to the router and keep the computer away from thick walls and large metal objects where possible." },
+      { "id": "wifi_keeps_disconnecting_step_03", "order": 3, "instruction": "Turn Wi-Fi off and on again on the computer, then reconnect." },
+      { "id": "wifi_keeps_disconnecting_step_04", "order": 4, "instruction": "Restart the computer after saving open work." },
+      { "id": "wifi_keeps_disconnecting_step_05", "order": 5, "instruction": "If several devices disconnect, ask the network owner to check the router or contact the internet provider." }
+    ],
+    "sources": ["https://support.microsoft.com/en-us/windows/experience/connectivity-networking/fix-wi-fi-connection-issues-in-windows"]
+  },
+  {
+    "id": "website_wont_open",
+    "categoryId": "internet_wifi",
+    "title": "One website will not open",
+    "description": "Check whether the issue is limited to one website, browser, or device.",
+    "difficulty": "easy",
+    "estimatedMinutes": 8,
+    "possibleCauses": ["The website is temporarily unavailable", "The browser needs to be restarted", "A browser extension or saved site data is interfering", "The address was entered incorrectly"],
+    "safetyWarning": "Do not enter passwords or payment details on a page that looks unexpected or shows security warnings.",
+    "requiredTools": [],
+    "steps": [
+      { "id": "website_wont_open_step_01", "order": 1, "instruction": "Check the website address for spelling mistakes and try opening a familiar different website." },
+      { "id": "website_wont_open_step_02", "order": 2, "instruction": "Close and reopen the browser, then try the address again." },
+      { "id": "website_wont_open_step_03", "order": 3, "instruction": "If available, try the same page in another browser you already trust." },
+      { "id": "website_wont_open_step_04", "order": 4, "instruction": "Try the page on another device using the same network. This helps tell whether the issue is limited to one computer." },
+      { "id": "website_wont_open_step_05", "order": 5, "instruction": "If only that website fails on different devices and networks, contact the website owner or try again later." }
+    ],
+    "sources": ["https://support.microsoft.com/en-us/windows/experience/connectivity-networking/fix-wi-fi-connection-issues-in-windows"]
+  },
+  {
+    "id": "computer_running_slowly",
+    "categoryId": "performance",
+    "title": "Computer is running slowly",
+    "description": "Try simple checks for busy apps, low storage, and pending updates.",
+    "difficulty": "easy",
+    "estimatedMinutes": 15,
+    "possibleCauses": ["Many apps are open", "An app is using a lot of computer resources", "The system drive has little free space", "The computer needs a restart or update"],
+    "safetyWarning": "Save open work before restarting. Do not end processes or uninstall apps you do not recognize.",
+    "requiredTools": [],
+    "steps": [
+      { "id": "computer_running_slowly_step_01", "order": 1, "instruction": "Save your work and restart the computer." },
+      { "id": "computer_running_slowly_step_02", "order": 2, "instruction": "Close apps and browser tabs that you recognize and are not using." },
+      { "id": "computer_running_slowly_step_03", "order": 3, "instruction": "Check the operating system's storage settings to see whether the main drive is nearly full." },
+      { "id": "computer_running_slowly_step_04", "order": 4, "instruction": "Install pending updates using the computer's built-in update settings when you have a stable power and internet connection." },
+      { "id": "computer_running_slowly_step_05", "order": 5, "instruction": "If the computer remains slow, note when it happens and ask your IT support person or device manufacturer for help." }
+    ],
+    "sources": ["https://support.microsoft.com/en-us/windows/experience/performance-optimization/tips-to-improve-pc-performance-in-windows"]
+  },
+  {
+    "id": "app_stops_responding",
+    "categoryId": "performance",
+    "title": "An app has stopped responding",
+    "description": "Give the app a moment, protect unsaved work, and restart it if needed.",
+    "difficulty": "easy",
+    "estimatedMinutes": 8,
+    "possibleCauses": ["The app is busy with a large task", "The app has temporarily frozen", "The computer is low on available resources", "The app needs an update"],
+    "safetyWarning": "Force-closing an app can lose unsaved changes. Wait first and save work if the app responds again.",
+    "requiredTools": [],
+    "steps": [
+      { "id": "app_stops_responding_step_01", "order": 1, "instruction": "Wait briefly, especially if the app is opening a large file or completing a task." },
+      { "id": "app_stops_responding_step_02", "order": 2, "instruction": "If the app responds, save your work and close any document or task you no longer need." },
+      { "id": "app_stops_responding_step_03", "order": 3, "instruction": "If it remains frozen, close it using the normal close control. Use the operating system's force-close option only as a last resort." },
+      { "id": "app_stops_responding_step_04", "order": 4, "instruction": "Reopen the app and check for an update from its built-in updater or the official store where it was installed." },
+      { "id": "app_stops_responding_step_05", "order": 5, "instruction": "If the app freezes again, note the file or action involved and contact the app publisher or your IT support person." }
+    ],
+    "sources": ["https://support.microsoft.com/en-us/windows/apps/repair-apps-and-programs-in-windows"]
+  },
+  {
+    "id": "computer_slow_startup",
+    "categoryId": "performance",
+    "title": "Computer takes a long time to start",
+    "description": "Check whether optional apps are slowing startup, while keeping essential security tools enabled.",
+    "difficulty": "moderate",
+    "estimatedMinutes": 15,
+    "possibleCauses": ["Many apps launch automatically", "An update is finishing", "The computer has limited free storage", "A startup app is not responding"],
+    "safetyWarning": "Only disable startup apps you recognize and do not need immediately. Leave security and accessibility tools enabled unless your IT support person advises otherwise.",
+    "requiredTools": [],
+    "steps": [
+      { "id": "computer_slow_startup_step_01", "order": 1, "instruction": "Restart once after saving work and note how long startup takes." },
+      { "id": "computer_slow_startup_step_02", "order": 2, "instruction": "Check whether the computer is finishing an operating system update before turning it off again." },
+      { "id": "computer_slow_startup_step_03", "order": 3, "instruction": "Open the operating system's Startup apps settings and review which apps launch automatically." },
+      { "id": "computer_slow_startup_step_04", "order": 4, "instruction": "Turn off automatic startup only for optional apps you recognize. You can still open those apps when needed." },
+      { "id": "computer_slow_startup_step_05", "order": 5, "instruction": "Restart and compare. If startup remains unusually slow, ask IT support before changing advanced startup settings." }
+    ],
+    "sources": ["https://support.microsoft.com/en-us/windows/experience/startup-boot/configure-startup-applications-in-windows"]
+  },
+  {
+    "id": "computer_low_storage",
+    "categoryId": "performance",
+    "title": "Main drive is nearly full",
+    "description": "Find out what is using space and remove only files you know you no longer need.",
+    "difficulty": "easy",
+    "estimatedMinutes": 15,
+    "possibleCauses": ["Large personal files", "Temporary files", "A full recycle bin", "Many installed apps"],
+    "safetyWarning": "Review files before deleting them. Do not delete operating system folders, files you do not recognize, or items needed by another user.",
+    "requiredTools": [],
+    "steps": [
+      { "id": "computer_low_storage_step_01", "order": 1, "instruction": "Open the operating system's storage settings and review the categories using the most space." },
+      { "id": "computer_low_storage_step_02", "order": 2, "instruction": "Move personal files you recognize to a trusted backup location if you have one, and check that the copies open before removing originals." },
+      { "id": "computer_low_storage_step_03", "order": 3, "instruction": "Review the Downloads folder and remove only files you recognize and no longer need." },
+      { "id": "computer_low_storage_step_04", "order": 4, "instruction": "Review the recycle bin before emptying it, because emptying it permanently removes its contents." },
+      { "id": "computer_low_storage_step_05", "order": 5, "instruction": "If using the built-in cleanup tool, read its selections before confirming so you understand which files it will remove." }
+    ],
+    "sources": ["https://support.microsoft.com/en-us/windows/experience/storage-filemanagement/manage-drive-space-with-storage-sense"]
+  },
+  {
+    "id": "computer_feels_too_hot",
+    "categoryId": "performance",
+    "title": "Computer feels too hot",
+    "description": "Reduce blocked airflow and watch for warning signs that need service.",
+    "difficulty": "easy",
+    "estimatedMinutes": 8,
+    "possibleCauses": ["Air vents are blocked", "The computer is under heavy workload", "The room or surface is warm", "A cooling component may need service"],
+    "safetyWarning": "If you smell burning, see smoke, notice a swollen battery, or the computer becomes painfully hot, turn it off if safe and seek qualified service. Do not open the case or touch internal parts.",
+    "requiredTools": [],
+    "steps": [
+      { "id": "computer_feels_too_hot_step_01", "order": 1, "instruction": "Move the computer onto a hard, flat surface and make sure its outside air vents are not covered." },
+      { "id": "computer_feels_too_hot_step_02", "order": 2, "instruction": "Close apps you recognize and are not using, then give the computer time to cool." },
+      { "id": "computer_feels_too_hot_step_03", "order": 3, "instruction": "If the computer shows a temperature warning, shut it down and leave it in a cooler place before trying again." },
+      { "id": "computer_feels_too_hot_step_04", "order": 4, "instruction": "Do not insert objects into vents or use liquids or sprays on the computer." },
+      { "id": "computer_feels_too_hot_step_05", "order": 5, "instruction": "If overheating or warning messages return, stop troubleshooting and contact the manufacturer or a qualified repair service." }
+    ],
+    "sources": ["https://support.microsoft.com/en-us/surface/performance/what-to-try-if-your-surface-feels-too-warm"]
+  },
+  {
+    "id": "audio_no_sound",
+    "categoryId": "audio_sound",
+    "title": "No sound from the computer",
+    "description": "Check mute, volume, and the selected sound output before changing drivers.",
+    "difficulty": "easy",
+    "estimatedMinutes": 8,
+    "possibleCauses": ["The computer or app is muted", "The wrong output device is selected", "Headphones or speakers are disconnected", "An app has a sound setting"],
+    "safetyWarning": "Keep volume low when testing headphones, then raise it gradually to protect your hearing.",
+    "requiredTools": [],
+    "steps": [
+      { "id": "audio_no_sound_step_01", "order": 1, "instruction": "Check the computer's volume and mute controls, then check the volume inside the app playing sound." },
+      { "id": "audio_no_sound_step_02", "order": 2, "instruction": "Check that speakers or headphones are connected and powered on." },
+      { "id": "audio_no_sound_step_03", "order": 3, "instruction": "Open sound settings and choose the speakers or headphones you intend to use as the output." },
+      { "id": "audio_no_sound_step_04", "order": 4, "instruction": "Try a different familiar audio app or a short system sound to see whether the issue is limited to one app." },
+      { "id": "audio_no_sound_step_05", "order": 5, "instruction": "Restart the computer after saving work. If sound is still missing, use the operating system's built-in audio troubleshooter or contact support." }
+    ],
+    "sources": ["https://support.microsoft.com/en-gb/windows/hardware/audio/fix-sound-or-audio-problems-in-windows"]
+  },
+  {
+    "id": "audio_microphone_not_working",
+    "categoryId": "audio_sound",
+    "title": "Microphone is not working",
+    "description": "Check mute, connection, selected input, and the app's microphone permission.",
+    "difficulty": "easy",
+    "estimatedMinutes": 10,
+    "possibleCauses": ["The microphone is muted or disconnected", "The wrong input device is selected", "The app cannot access the microphone", "The microphone level is too low"],
+    "safetyWarning": "Only allow microphone access for apps you recognize and trust.",
+    "requiredTools": [],
+    "steps": [
+      { "id": "audio_microphone_not_working_step_01", "order": 1, "instruction": "Check the headset's mute switch and make sure its cable or wireless connection is in place." },
+      { "id": "audio_microphone_not_working_step_02", "order": 2, "instruction": "In sound settings, select the microphone you want to use and run the built-in input test if one is available." },
+      { "id": "audio_microphone_not_working_step_03", "order": 3, "instruction": "Check the operating system's privacy settings and allow microphone access only for the app you intend to use." },
+      { "id": "audio_microphone_not_working_step_04", "order": 4, "instruction": "Check the app's own audio settings to confirm that the same microphone is selected." },
+      { "id": "audio_microphone_not_working_step_05", "order": 5, "instruction": "Try the microphone in another trusted app. If it fails there too, use your operating system's audio troubleshooter or ask support." }
+    ],
+    "sources": ["https://support.microsoft.com/en-us/windows/hardware/drivers/fix-microphone-problems"]
+  },
+  {
+    "id": "audio_crackling_headphones",
+    "categoryId": "audio_sound",
+    "title": "Headphones make crackling or broken sound",
+    "description": "Check the connection and compare the headphones with another device or app.",
+    "difficulty": "easy",
+    "estimatedMinutes": 8,
+    "possibleCauses": ["A loose or damaged cable", "A poor wireless connection", "The audio source or app", "An output device setting or driver"],
+    "safetyWarning": "Do not use headphones at high volume to test them.",
+    "requiredTools": [],
+    "steps": [
+      { "id": "audio_crackling_headphones_step_01", "order": 1, "instruction": "Lower the volume, then disconnect and reconnect the headphones firmly." },
+      { "id": "audio_crackling_headphones_step_02", "order": 2, "instruction": "If the headphones are wireless, move closer to the computer and check that they have charge." },
+      { "id": "audio_crackling_headphones_step_03", "order": 3, "instruction": "Try a different familiar audio file or app at a low volume." },
+      { "id": "audio_crackling_headphones_step_04", "order": 4, "instruction": "If possible, test the headphones with another compatible device to help identify whether the issue follows the headphones." },
+      { "id": "audio_crackling_headphones_step_05", "order": 5, "instruction": "If the sound is still distorted, try another output device or ask the device manufacturer for help." }
+    ],
+    "sources": ["https://support.microsoft.com/en-us/windows/hardware/audio/update-audio-drivers-in-windows"]
+  },
+  {
+    "id": "audio_bluetooth_headphones_wont_pair",
+    "categoryId": "audio_sound",
+    "title": "Bluetooth headphones will not pair",
+    "description": "Check charge, pairing mode, distance, and whether the headphones are connected elsewhere.",
+    "difficulty": "easy",
+    "estimatedMinutes": 10,
+    "possibleCauses": ["The headphones need charging", "Bluetooth is off", "The headphones are not in pairing mode", "The headphones are already connected to another device"],
+    "safetyWarning": null,
+    "requiredTools": [],
+    "steps": [
+      { "id": "audio_bluetooth_headphones_wont_pair_step_01", "order": 1, "instruction": "Charge the headphones and keep them close to the computer." },
+      { "id": "audio_bluetooth_headphones_wont_pair_step_02", "order": 2, "instruction": "Turn on Bluetooth on the computer and put the headphones into pairing mode using their instructions." },
+      { "id": "audio_bluetooth_headphones_wont_pair_step_03", "order": 3, "instruction": "If the headphones are connected to another nearby device, disconnect them there before trying again." },
+      { "id": "audio_bluetooth_headphones_wont_pair_step_04", "order": 4, "instruction": "If they are already listed on the computer, remove that saved pairing and pair them again using the computer's Bluetooth settings." },
+      { "id": "audio_bluetooth_headphones_wont_pair_step_05", "order": 5, "instruction": "If pairing still fails, restart Bluetooth on the computer and check the headphone maker's help instructions." }
+    ],
+    "sources": ["https://support.microsoft.com/en-us/windows/hardware/bluetooth/troubleshoot-bluetooth-not-connecting-in-windows"]
+  },
+  {
+    "id": "audio_wrong_output_device",
+    "categoryId": "audio_sound",
+    "title": "Sound plays through the wrong device",
+    "description": "Select the output you want and check whether the app has its own audio choice.",
+    "difficulty": "easy",
+    "estimatedMinutes": 6,
+    "possibleCauses": ["A monitor, headset, or speaker became the default output", "The app uses a separate output setting", "A Bluetooth device connected automatically"],
+    "safetyWarning": null,
+    "requiredTools": [],
+    "steps": [
+      { "id": "audio_wrong_output_device_step_01", "order": 1, "instruction": "Open sound settings and look at the list of available output devices." },
+      { "id": "audio_wrong_output_device_step_02", "order": 2, "instruction": "Select the speakers or headphones you want to use and play a short sound at a low volume." },
+      { "id": "audio_wrong_output_device_step_03", "order": 3, "instruction": "Check the app's sound settings too, because some apps choose an output separately." },
+      { "id": "audio_wrong_output_device_step_04", "order": 4, "instruction": "Disconnect an audio device you are not using if it keeps becoming the selected output." },
+      { "id": "audio_wrong_output_device_step_05", "order": 5, "instruction": "If the intended device is missing from settings, reconnect it and use the built-in audio troubleshooter." }
+    ],
+    "sources": ["https://support.microsoft.com/en-gb/windows/hardware/audio/fix-sound-or-audio-problems-in-windows"]
+  },
+  {
+    "id": "usb_drive_not_recognized",
+    "categoryId": "storage_usb",
+    "title": "USB drive is not showing up",
+    "description": "Check the connection and another port before making changes to the drive.",
+    "difficulty": "easy",
+    "estimatedMinutes": 10,
+    "possibleCauses": ["The USB plug is not seated", "The port or hub is not working", "The drive needs power", "The computer does not recognize the device"],
+    "safetyWarning": "Do not format, initialize, or erase a drive that contains files you need. Stop if the drive clicks, smells burnt, or becomes unusually hot.",
+    "requiredTools": [],
+    "steps": [
+      { "id": "usb_drive_not_recognized_step_01", "order": 1, "instruction": "Remove the drive gently, check for visible damage, then reconnect it without forcing the plug." },
+      { "id": "usb_drive_not_recognized_step_02", "order": 2, "instruction": "Try a different USB port directly on the computer, avoiding an unpowered hub if possible." },
+      { "id": "usb_drive_not_recognized_step_03", "order": 3, "instruction": "If available, try another compatible computer to see whether it recognizes the drive." },
+      { "id": "usb_drive_not_recognized_step_04", "order": 4, "instruction": "If the computer asks to format or initialize the drive, cancel the prompt, especially if it contains important files." },
+      { "id": "usb_drive_not_recognized_step_05", "order": 5, "instruction": "If the drive still is not recognized or has important unreadable files, ask IT support or a data recovery professional before trying repair tools." }
+    ],
+    "sources": ["https://support.microsoft.com/en-us/windows/hardware/usb/fix-usb-c-problems-in-windows", "https://support.microsoft.com/en-us/windows/hardware/safely-remove-hardware-in-windows"]
+  },
+  {
+    "id": "usb_drive_requests_format",
+    "categoryId": "storage_usb",
+    "title": "Computer asks to format a USB drive",
+    "description": "Protect the files first when a drive appears unreadable or asks to be formatted.",
+    "difficulty": "easy",
+    "estimatedMinutes": 8,
+    "possibleCauses": ["The file system cannot be read", "The drive was disconnected while busy", "The drive or its file system may be damaged"],
+    "safetyWarning": "Formatting erases data on the selected drive. Do not format it if you need its files. Do not run repair or recovery tools on the only copy of important data.",
+    "requiredTools": [],
+    "steps": [
+      { "id": "usb_drive_requests_format_step_01", "order": 1, "instruction": "Cancel the format prompt. Do not choose Format, Erase, or Initialize." },
+      { "id": "usb_drive_requests_format_step_02", "order": 2, "instruction": "Safely eject the drive if the computer allows it, then reconnect it once." },
+      { "id": "usb_drive_requests_format_step_03", "order": 3, "instruction": "Try another USB port or compatible computer only if doing so will not write changes to the drive." },
+      { "id": "usb_drive_requests_format_step_04", "order": 4, "instruction": "If the files are important, stop and ask IT support or a reputable data recovery professional about a safe recovery plan." },
+      { "id": "usb_drive_requests_format_step_05", "order": 5, "instruction": "Only format the drive if you have confirmed that you do not need its contents and have selected the correct drive." }
+    ],
+    "sources": ["https://support.microsoft.com/en-gb/windows/experience/backup-recovery/recovery-drive"]
+  },
+  {
+    "id": "usb_file_copy_fails",
+    "categoryId": "storage_usb",
+    "title": "Cannot copy a file to a USB drive",
+    "description": "Check free space, file size, and the connection before trying the copy again.",
+    "difficulty": "easy",
+    "estimatedMinutes": 10,
+    "possibleCauses": ["The drive is full", "The file is larger than the drive's file system allows", "The drive connection is unstable", "The file is open in another app"],
+    "safetyWarning": "Copy important files rather than moving them, and verify the copied file opens before deleting the original.",
+    "requiredTools": [],
+    "steps": [
+      { "id": "usb_file_copy_fails_step_01", "order": 1, "instruction": "Read the full error message and check how much free space the USB drive has." },
+      { "id": "usb_file_copy_fails_step_02", "order": 2, "instruction": "Check the file size and make sure the drive has enough free space." },
+      { "id": "usb_file_copy_fails_step_03", "order": 3, "instruction": "Close the file if it is open in another app, then try copying it again." },
+      { "id": "usb_file_copy_fails_step_04", "order": 4, "instruction": "Try copying one file at a time and avoid moving the drive during the transfer." },
+      { "id": "usb_file_copy_fails_step_05", "order": 5, "instruction": "If the error says the file is too large for the format, do not reformat the drive if it contains files you need; ask for help choosing a safe backup and format plan." }
+    ],
+    "sources": ["https://support.microsoft.com/en-us/windows/experience/storage-filemanagement/manage-drive-space-with-storage-sense"]
+  },
+  {
+    "id": "external_drive_disconnects",
+    "categoryId": "storage_usb",
+    "title": "External drive disconnects during use",
+    "description": "Check the cable, port, and power while avoiding interruptions to file activity.",
+    "difficulty": "easy",
+    "estimatedMinutes": 10,
+    "possibleCauses": ["A loose or damaged cable", "An unstable USB hub or port", "The drive needs more power", "The drive or cable may be failing"],
+    "safetyWarning": "Do not unplug a drive while files are being copied or saved. If the drive contains important data or makes unusual noises, stop using it and seek help.",
+    "requiredTools": [],
+    "steps": [
+      { "id": "external_drive_disconnects_step_01", "order": 1, "instruction": "Wait until no files are copying or saving, then safely eject the drive before checking its cable." },
+      { "id": "external_drive_disconnects_step_02", "order": 2, "instruction": "Check the cable and plugs for visible damage. Do not use a frayed or bent cable." },
+      { "id": "external_drive_disconnects_step_03", "order": 3, "instruction": "Reconnect the drive directly to another computer port instead of through a hub." },
+      { "id": "external_drive_disconnects_step_04", "order": 4, "instruction": "If the drive uses a separate power adapter, check that it is connected as described in the drive's manual." },
+      { "id": "external_drive_disconnects_step_05", "order": 5, "instruction": "If disconnections continue, stop repeated testing and ask the manufacturer or IT support to check the drive and cable." }
+    ],
+    "sources": ["https://support.microsoft.com/en-us/windows/hardware/safely-remove-hardware-in-windows", "https://support.microsoft.com/en-us/windows/hardware/usb/fix-usb-c-problems-in-windows"]
+  },
+  {
+    "id": "usb_wont_eject",
+    "categoryId": "storage_usb",
+    "title": "USB drive says it is still in use",
+    "description": "Close files and apps that may be using the drive, then use the system eject control.",
+    "difficulty": "easy",
+    "estimatedMinutes": 6,
+    "possibleCauses": ["A file on the drive is still open", "A copy or save operation is still running", "A background app is checking the drive"],
+    "safetyWarning": "Removing a drive while it is being written to can lose or damage files. Do not pull it out while a transfer is active.",
+    "requiredTools": [],
+    "steps": [
+      { "id": "usb_wont_eject_step_01", "order": 1, "instruction": "Wait for any visible file copy, save, or backup activity to finish." },
+      { "id": "usb_wont_eject_step_02", "order": 2, "instruction": "Close documents and file browser windows that are open from the USB drive." },
+      { "id": "usb_wont_eject_step_03", "order": 3, "instruction": "Close apps that may be reading or saving files on that drive." },
+      { "id": "usb_wont_eject_step_04", "order": 4, "instruction": "Use the operating system's Safely Remove or Eject option again and wait for its confirmation." },
+      { "id": "usb_wont_eject_step_05", "order": 5, "instruction": "If the computer still says the drive is in use, save your work and shut the computer down normally before disconnecting it." }
+    ],
+    "sources": ["https://support.microsoft.com/en-us/windows/hardware/safely-remove-hardware-in-windows"]
+  },
+  {
+    "id": "keyboard_not_typing",
+    "categoryId": "hardware_devices",
+    "title": "Keyboard is not typing",
+    "description": "Check power and connection, then test whether only one app is affected.",
+    "difficulty": "easy",
+    "estimatedMinutes": 8,
+    "possibleCauses": ["Keyboard is disconnected or out of charge", "A wireless receiver or Bluetooth connection is unavailable", "The app is not accepting input", "A key or cable is damaged"],
+    "safetyWarning": "Disconnect a wired keyboard before gently cleaning its outside. Do not pour liquid or spray cleaner into it.",
+    "requiredTools": [],
+    "steps": [
+      { "id": "keyboard_not_typing_step_01", "order": 1, "instruction": "Click a different text field or app to check whether the problem affects the whole computer." },
+      { "id": "keyboard_not_typing_step_02", "order": 2, "instruction": "For a wired keyboard, reconnect it and try another USB port. For a wireless keyboard, check its power and connection." },
+      { "id": "keyboard_not_typing_step_03", "order": 3, "instruction": "If it uses a USB receiver, reconnect the receiver directly to the computer instead of through a hub." },
+      { "id": "keyboard_not_typing_step_04", "order": 4, "instruction": "Restart the computer after saving work, then test the keyboard again." },
+      { "id": "keyboard_not_typing_step_05", "order": 5, "instruction": "If possible, test with another keyboard. If only one keyboard fails, contact its maker or replace it." }
+    ],
+    "sources": ["https://support.microsoft.com/en-us/windows/hardware/input-devices/mouse-and-keyboard-problems-in-windows"]
+  },
+  {
+    "id": "mouse_not_responding",
+    "categoryId": "hardware_devices",
+    "title": "Mouse or trackpad is not responding",
+    "description": "Check the pointer device's power, connection, and touchpad setting.",
+    "difficulty": "easy",
+    "estimatedMinutes": 8,
+    "possibleCauses": ["The mouse battery is low", "The cable or wireless receiver is disconnected", "The touchpad was turned off", "The sensor or surface is obstructed"],
+    "safetyWarning": "Do not open the computer to inspect internal parts. Check the device manual before using any cleaning product.",
+    "requiredTools": [],
+    "steps": [
+      { "id": "mouse_not_responding_step_01", "order": 1, "instruction": "For a mouse, check its power or battery and gently clean its outside sensor area with a dry soft cloth." },
+      { "id": "mouse_not_responding_step_02", "order": 2, "instruction": "Reconnect a wired mouse or receiver and try another USB port directly on the computer." },
+      { "id": "mouse_not_responding_step_03", "order": 3, "instruction": "For a laptop touchpad, check the computer's touchpad settings and keyboard touchpad toggle if it has one." },
+      { "id": "mouse_not_responding_step_04", "order": 4, "instruction": "Restart the computer after saving work." },
+      { "id": "mouse_not_responding_step_05", "order": 5, "instruction": "If possible, test another mouse or trackpad. Ask the device maker or IT support if the built-in touchpad remains unavailable." }
+    ],
+    "sources": ["https://support.microsoft.com/en-us/windows/hardware/input-devices/mouse-and-keyboard-problems-in-windows"]
+  },
+  {
+    "id": "external_monitor_no_signal",
+    "categoryId": "hardware_devices",
+    "title": "External monitor shows no signal",
+    "description": "Check monitor power, selected input, cable connections, and display mode.",
+    "difficulty": "easy",
+    "estimatedMinutes": 10,
+    "possibleCauses": ["Monitor is off or on the wrong input", "A cable is loose or damaged", "The computer is using another display mode", "An adapter or dock is not working"],
+    "safetyWarning": "Do not open the monitor or computer. Never touch exposed connectors or cables that are damaged or hot.",
+    "requiredTools": [],
+    "steps": [
+      { "id": "external_monitor_no_signal_step_01", "order": 1, "instruction": "Check that the monitor is plugged in, powered on, and set to the input used by its cable." },
+      { "id": "external_monitor_no_signal_step_02", "order": 2, "instruction": "Check that the video cable is firmly connected at both ends. Do not force a connector." },
+      { "id": "external_monitor_no_signal_step_03", "order": 3, "instruction": "If available, try another compatible cable or connect the monitor directly without a dock or adapter." },
+      { "id": "external_monitor_no_signal_step_04", "order": 4, "instruction": "Open the computer's display settings and choose a mode that includes the external monitor." },
+      { "id": "external_monitor_no_signal_step_05", "order": 5, "instruction": "Restart the computer after saving work. If there is still no picture, test with another compatible display or contact support." }
+    ],
+    "sources": ["https://support.microsoft.com/en-us/windows/hardware/display-graphics/troubleshoot-external-monitor-connections-in-windows"]
+  },
+  {
+    "id": "webcam_not_detected",
+    "categoryId": "hardware_devices",
+    "title": "Webcam is not detected",
+    "description": "Check the camera cover, privacy permission, connection, and another camera app.",
+    "difficulty": "easy",
+    "estimatedMinutes": 10,
+    "possibleCauses": ["A privacy shutter is closed", "The app lacks camera permission", "Another app is using the camera", "An external camera is disconnected"],
+    "safetyWarning": "Only allow camera access for apps you recognize and trust.",
+    "requiredTools": [],
+    "steps": [
+      { "id": "webcam_not_detected_step_01", "order": 1, "instruction": "Check for a physical camera cover or privacy switch and open it if you want to use the camera." },
+      { "id": "webcam_not_detected_step_02", "order": 2, "instruction": "For an external camera, reconnect it and try a different USB port." },
+      { "id": "webcam_not_detected_step_03", "order": 3, "instruction": "Close video meeting apps that may already be using the camera." },
+      { "id": "webcam_not_detected_step_04", "order": 4, "instruction": "Check the operating system's privacy settings and allow camera access for the app you intend to use." },
+      { "id": "webcam_not_detected_step_05", "order": 5, "instruction": "Test the camera in another trusted app. If it is still missing, use the built-in camera troubleshooter or contact support." }
+    ],
+    "sources": ["https://support.microsoft.com/en-us/windows/hardware/camera/camera-doesn-t-work-in-windows"]
+  },
+  {
+    "id": "printer_wont_print",
+    "categoryId": "hardware_devices",
+    "title": "Printer will not print",
+    "description": "Check the printer's power, connection, paper, and selected printer before changing its setup.",
+    "difficulty": "easy",
+    "estimatedMinutes": 12,
+    "possibleCauses": ["Printer is off or disconnected", "The computer selected a different printer", "Paper is out or jammed", "The printer is paused or has an error"],
+    "safetyWarning": "Follow the printer maker's instructions for clearing a paper jam. Do not pull hard on stuck paper or reach into moving parts. Turn the printer off before checking accessible areas if its manual says to do so.",
+    "requiredTools": [],
+    "steps": [
+      { "id": "printer_wont_print_step_01", "order": 1, "instruction": "Check that the printer is powered on and that its display shows no obvious error." },
+      { "id": "printer_wont_print_step_02", "order": 2, "instruction": "Check the USB or Wi-Fi connection and confirm the computer and wireless printer use the same network." },
+      { "id": "printer_wont_print_step_03", "order": 3, "instruction": "Check for paper, ink or toner alerts, an open cover, or a paper jam using the printer's own instructions." },
+      { "id": "printer_wont_print_step_04", "order": 4, "instruction": "In the print window, confirm that the correct printer is selected and that printing is not paused." },
+      { "id": "printer_wont_print_step_05", "order": 5, "instruction": "Try a test page or print from another app. If neither works, use the printer's built-in troubleshooter or ask its manufacturer for help." }
+    ],
+    "sources": ["https://support.microsoft.com/en-au/windows/hardware/printer/fix-printer-connection-and-printing-problems-in-windows"]
+  },
+  {
+    "id": "app_wont_open",
+    "categoryId": "software_apps",
+    "title": "An app will not open",
+    "description": "Restart the app and computer, then check for a trusted update or repair option.",
+    "difficulty": "easy",
+    "estimatedMinutes": 12,
+    "possibleCauses": ["The app is already frozen in the background", "The app needs an update", "The app's local files are damaged", "The app is not compatible with this operating system"],
+    "safetyWarning": "Use the app publisher's official website or a trusted app store for updates. Repair or reset options can affect app settings or local data; read the prompt before confirming.",
+    "requiredTools": [],
+    "steps": [
+      { "id": "app_wont_open_step_01", "order": 1, "instruction": "Wait briefly, then close and reopen the app using its normal controls." },
+      { "id": "app_wont_open_step_02", "order": 2, "instruction": "Save other work and restart the computer." },
+      { "id": "app_wont_open_step_03", "order": 3, "instruction": "Check for an app update from the official store or the app's built-in update option." },
+      { "id": "app_wont_open_step_04", "order": 4, "instruction": "If the operating system offers a Repair option for the app, read what it does and try Repair before Reset or reinstalling." },
+      { "id": "app_wont_open_step_05", "order": 5, "instruction": "If the app still will not open, note any error message and contact the app publisher or your IT support person." }
+    ],
+    "sources": ["https://support.microsoft.com/en-us/windows/apps/repair-apps-and-programs-in-windows"]
+  },
+  {
+    "id": "app_install_fails",
+    "categoryId": "software_apps",
+    "title": "App installation will not finish",
+    "description": "Check storage, system compatibility, connection, and the installation source.",
+    "difficulty": "easy",
+    "estimatedMinutes": 12,
+    "possibleCauses": ["Not enough free storage", "The installer does not match the operating system", "The internet connection dropped", "The app source or installer is not trusted"],
+    "safetyWarning": "Install software only from its official publisher or a trusted store. Do not bypass security warnings or disable antivirus protection to force an installation.",
+    "requiredTools": [],
+    "steps": [
+      { "id": "app_install_fails_step_01", "order": 1, "instruction": "Read the installation error and write down its wording before closing it." },
+      { "id": "app_install_fails_step_02", "order": 2, "instruction": "Check that the computer has enough free storage and meets the app's published system requirements." },
+      { "id": "app_install_fails_step_03", "order": 3, "instruction": "If the installer came from the internet, confirm it came from the app publisher's official website or a trusted store." },
+      { "id": "app_install_fails_step_04", "order": 4, "instruction": "Restart the computer and try the official installer again when the computer has a stable connection and power." },
+      { "id": "app_install_fails_step_05", "order": 5, "instruction": "If installation is blocked by a work or school policy, contact the device administrator instead of trying to bypass it." }
+    ],
+    "sources": ["https://support.microsoft.com/en-us/windows/deployment/install-upgrade/fix-problems-that-block-programs-from-being-installed-or-removed", "https://support.microsoft.com/en-us/windows/security/threat-malware-protection/protect-your-pc-from-unwanted-software"]
+  },
+  {
+    "id": "app_update_fails",
+    "categoryId": "software_apps",
+    "title": "App update fails or gets stuck",
+    "description": "Check the connection and storage, then retry through the app's official update channel.",
+    "difficulty": "easy",
+    "estimatedMinutes": 12,
+    "possibleCauses": ["The internet connection is unstable", "The device is low on storage", "The update service is temporarily unavailable", "The app needs to be closed and reopened"],
+    "safetyWarning": "Keep the computer connected to power during a large update. Do not interrupt an operating system update while it is actively installing or restarting.",
+    "requiredTools": [],
+    "steps": [
+      { "id": "app_update_fails_step_01", "order": 1, "instruction": "Check whether other websites or apps can connect to the internet." },
+      { "id": "app_update_fails_step_02", "order": 2, "instruction": "Check the device's available storage and free space only by removing files you recognize and no longer need." },
+      { "id": "app_update_fails_step_03", "order": 3, "instruction": "Close and reopen the app store or the app's built-in updater, then check for the update again." },
+      { "id": "app_update_fails_step_04", "order": 4, "instruction": "Restart the computer after saving work, then retry the update from its official source." },
+      { "id": "app_update_fails_step_05", "order": 5, "instruction": "If a specific error returns, note its code or wording and check the app publisher's support instructions." }
+    ],
+    "sources": ["https://support.microsoft.com/en-us/accounts-billing/get-updates-for-apps-and-games-in-microsoft-store", "https://support.microsoft.com/en-gb/windows/deployment/updates-lifecycle/troubleshoot-problems-updating-windows"]
+  },
+  {
+    "id": "file_wont_open",
+    "categoryId": "software_apps",
+    "title": "A file will not open",
+    "description": "Check the file name, format, and app before changing or replacing the file.",
+    "difficulty": "easy",
+    "estimatedMinutes": 8,
+    "possibleCauses": ["No compatible app is installed", "The wrong app is selected", "The file is incomplete or damaged", "The file came from an untrusted source"],
+    "safetyWarning": "Do not change a file's extension to make it open. Only open files from sources you trust, and do not enable macros or other active content unless you know it is safe.",
+    "requiredTools": [],
+    "steps": [
+      { "id": "file_wont_open_step_01", "order": 1, "instruction": "Check that the file name and location are correct and that the file has finished downloading or copying." },
+      { "id": "file_wont_open_step_02", "order": 2, "instruction": "Read the file extension, if visible, and check which app is designed to open that file type." },
+      { "id": "file_wont_open_step_03", "order": 3, "instruction": "Use the operating system's Open with option to choose an installed app you trust that supports this file type." },
+      { "id": "file_wont_open_step_04", "order": 4, "instruction": "If you have another copy, try that copy without overwriting the original." },
+      { "id": "file_wont_open_step_05", "order": 5, "instruction": "If the file is important and still will not open, ask its sender or your IT support person for a fresh copy or the correct app." }
+    ],
+    "sources": ["https://support.microsoft.com/en-us/windows/experience/storage-filemanagement/common-file-name-extensions", "https://support.microsoft.com/en-us/windows/apps/change-default-apps-in-windows"]
+  },
+  {
+    "id": "unexpected_browser_popups",
+    "categoryId": "software_apps",
+    "title": "Unexpected browser pop-ups or redirects",
+    "description": "Close suspicious pages safely, review browser notifications, and run a trusted security scan.",
+    "difficulty": "moderate",
+    "estimatedMinutes": 15,
+    "possibleCauses": ["A website is showing advertisements", "A site was allowed to send notifications", "An unwanted browser extension is active", "Unwanted software may be present"],
+    "safetyWarning": "Do not call numbers in pop-ups, install a tool they suggest, or provide passwords or payment details. Do not click prompts claiming your computer is infected.",
+    "requiredTools": [],
+    "steps": [
+      { "id": "unexpected_browser_popups_step_01", "order": 1, "instruction": "Do not click buttons or phone numbers in the pop-up. Close the browser tab using its normal close control." },
+      { "id": "unexpected_browser_popups_step_02", "order": 2, "instruction": "Open the browser's settings and review site notification permissions. Remove permission only for sites you do not recognize or trust." },
+      { "id": "unexpected_browser_popups_step_03", "order": 3, "instruction": "Review browser extensions and remove only extensions you recognize as unwanted or did not choose to install." },
+      { "id": "unexpected_browser_popups_step_04", "order": 4, "instruction": "Use the security software already provided by your operating system or a trusted security provider to run a scan." },
+      { "id": "unexpected_browser_popups_step_05", "order": 5, "instruction": "If redirects continue or you entered sensitive information, stop using the affected browser and contact your IT support or security provider." }
+    ],
+    "sources": ["https://support.microsoft.com/en-au/microsoft-edge/block-pop-ups-in-microsoft-edge-1d8ba4f8-f385-9a0b-e944-aa47339b6bb5", "https://support.microsoft.com/en-gb/defender/how-to-start-a-scan-for-viruses-or-malware-in-microsoft-defender"]
+  }
+]

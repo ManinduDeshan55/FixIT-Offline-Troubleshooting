@@ -1,0 +1,32 @@
+[
+  {
+    "id": "internet_wifi",
+    "name": "Internet & Wi-Fi",
+    "description": "Connection, wireless signal, and website access problems."
+  },
+  {
+    "id": "performance",
+    "name": "Performance",
+    "description": "Slow response, long startup, low storage, and heat."
+  },
+  {
+    "id": "audio_sound",
+    "name": "Audio & Sound",
+    "description": "Speaker, headphone, microphone, and Bluetooth audio problems."
+  },
+  {
+    "id": "storage_usb",
+    "name": "Storage & USB",
+    "description": "External drives, USB connections, file copying, and safe removal."
+  },
+  {
+    "id": "hardware_devices",
+    "name": "Hardware & Devices",
+    "description": "Keyboard, mouse, display, camera, and printer problems."
+  },
+  {
+    "id": "software_apps",
+    "name": "Software & Applications",
+    "description": "Apps that fail to open, install, update, or handle files."
+  }
+]
