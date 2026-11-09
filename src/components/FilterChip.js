@@ -6,6 +6,7 @@ export default function FilterChip({ label, selected, onPress }) {
     <Pressable
       accessibilityRole="button"
       accessibilityState={{ selected }}
+      hitSlop={{ top: 4, bottom: 4, left: 2, right: 2 }}
       onPress={onPress}
       style={[styles.chip, selected && styles.selectedChip]}
     >
