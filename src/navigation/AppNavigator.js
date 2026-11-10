@@ -5,6 +5,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StyleSheet, View } from 'react-native';
 import { colors, radius } from '../styles/theme';
 import CategoriesScreen from '../screens/CategoriesScreen';
+import DiagnosticWizardScreen from '../screens/DiagnosticWizardScreen';
 import GuideDetailsScreen from '../screens/GuideDetailsScreen';
 import HistoryScreen from '../screens/HistoryScreen';
 import HomeScreen from '../screens/HomeScreen';
@@ -108,6 +109,11 @@ export default function AppNavigator() {
           name="Library"
           component={LibraryScreen}
           options={{ title: 'Troubleshooting Library' }}
+        />
+        <Stack.Screen
+          name="DiagnosticWizard"
+          component={DiagnosticWizardScreen}
+          options={{ title: 'Find My Problem' }}
         />
         <Stack.Screen
           name="GuideDetails"

@@ -55,6 +55,12 @@ export default function HomeScreen({ navigation }) {
           <Text style={styles.searchIcon}>⌕</Text><Text style={styles.searchPlaceholder}>What can we help you fix?</Text><Text style={styles.searchArrow}>›</Text>
         </Pressable>
 
+        <Pressable accessibilityRole="button" accessibilityLabel="Find My Problem with the offline diagnostic wizard" onPress={() => navigation.navigate('DiagnosticWizard')} style={({ pressed }) => [styles.wizardEntry, pressed && styles.pressed]}>
+          <View style={styles.wizardIcon}><Text style={styles.wizardIconText}>?</Text></View>
+          <View style={styles.wizardCopy}><Text style={styles.wizardTitle}>Find My Problem</Text><Text style={styles.wizardDescription}>Answer a few questions to find a troubleshooting guide.</Text></View>
+          <Text style={styles.wizardArrow}>›</Text>
+        </Pressable>
+
         {recentGuide ? (
           <View style={styles.section}>
             <SectionHeading title="Continue troubleshooting" action="View history" onPress={() => navigation.navigate('History')} />
@@ -122,6 +128,13 @@ const styles = StyleSheet.create({
   searchIcon: { color: colors.primary, fontSize: 26, marginRight: spacing.sm },
   searchPlaceholder: { flex: 1, color: colors.textMuted, fontSize: typography.body },
   searchArrow: { color: colors.textMuted, fontSize: 26 },
+  wizardEntry: { minHeight: 72, flexDirection: 'row', alignItems: 'center', backgroundColor: colors.white, borderColor: colors.border, borderWidth: 1, borderRadius: radius.md, padding: spacing.md, marginBottom: spacing.lg, ...shadows.sm },
+  wizardIcon: { width: 40, height: 40, borderRadius: radius.sm, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.infoLight, marginRight: spacing.md },
+  wizardIconText: { color: colors.primary, fontSize: typography.heading, fontWeight: '800' },
+  wizardCopy: { flex: 1 },
+  wizardTitle: { color: colors.navy, fontSize: typography.body, fontWeight: '700' },
+  wizardDescription: { color: colors.textMuted, fontSize: typography.caption, lineHeight: 18, marginTop: 2 },
+  wizardArrow: { color: colors.textMuted, fontSize: 26, marginLeft: spacing.sm },
   section: { marginBottom: spacing.lg },
   sectionHeading: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: spacing.sm },
   sectionTitle: { color: colors.navy, fontSize: typography.heading, fontWeight: '700' },
