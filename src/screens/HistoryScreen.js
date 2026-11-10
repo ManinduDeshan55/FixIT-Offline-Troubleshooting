@@ -20,12 +20,29 @@ function formatDate(dateText) {
   return date.toLocaleString();
 }
 
+function summarizeSessions(rows) {
+  const sessions = Array.isArray(rows) ? rows : [];
+  const solved = sessions.filter((session) => session?.status === 'solved').length;
+  const notSolved = sessions.filter((session) => session?.status === 'not_solved').length;
+  const inProgress = sessions.filter((session) => session?.status === 'in_progress').length;
+  const completedOutcomes = solved + notSolved;
+
+  return {
+    total: sessions.length,
+    solved,
+    notSolved,
+    inProgress,
+    resolutionRate: completedOutcomes === 0 ? null : Math.round((solved / completedOutcomes) * 100),
+  };
+}
+
 export default function HistoryScreen({ navigation }) {
   const db = useSQLiteContext();
   const insets = useSafeAreaInsets();
   const [sessions, setSessions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
+  const insights = summarizeSessions(sessions);
 
   useFocusEffect(useCallback(() => {
     let isActive = true;
@@ -57,6 +74,35 @@ export default function HistoryScreen({ navigation }) {
             <Text style={styles.subtitle}>Revisit a past fix or pick up where you left off.</Text>
           </View>
         </View>
+
+        {!loading && !errorMessage ? (
+          <View style={styles.insightsCard}>
+            <View style={styles.insightsHeader}>
+              <View style={styles.insightsTitleGroup}>
+                <Text style={styles.insightsTitle}>Troubleshooting Insights</Text>
+                <Text style={styles.insightsSubtitle}>A snapshot of your session outcomes</Text>
+              </View>
+              <View style={styles.rateBadge}>
+                <Text style={styles.rateValue}>{insights.resolutionRate === null ? 'N/A' : `${insights.resolutionRate}%`}</Text>
+                <Text style={styles.rateLabel}>RESOLUTION</Text>
+              </View>
+            </View>
+
+            <View style={styles.metricGrid}>
+              <Metric label="Total Sessions" value={insights.total} tone="neutral" />
+              <Metric label="Solved" value={insights.solved} tone="success" />
+              <Metric label="Not Solved" value={insights.notSolved} tone="warning" />
+              <Metric label="In Progress" value={insights.inProgress} tone="info" />
+            </View>
+
+            {insights.resolutionRate !== null ? (
+              <View style={styles.rateTrack} accessibilityRole="progressbar" accessibilityValue={{ min: 0, max: 100, now: insights.resolutionRate }}>
+                <View style={[styles.rateFill, { width: `${insights.resolutionRate}%` }]} />
+              </View>
+            ) : null}
+            <Text style={styles.rateExplanation}>Based on sessions with a recorded solved or not solved outcome. In-progress sessions are excluded.</Text>
+          </View>
+        ) : null}
 
         {!loading ? (
           <View style={styles.summaryRow}>
@@ -127,6 +173,15 @@ export default function HistoryScreen({ navigation }) {
   );
 }
 
+function Metric({ label, value, tone }) {
+  return (
+    <View style={styles.metricCell}>
+      <Text style={[styles.metricValue, styles[`metricValue${tone}`]]}>{value}</Text>
+      <Text style={styles.metricLabel}>{label}</Text>
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
   safeArea: { flex: 1, backgroundColor: colors.background },
   content: { padding: spacing.lg, paddingTop: spacing.md },
@@ -140,6 +195,25 @@ const styles = StyleSheet.create({
   sectionTitle: { color: colors.navy, fontSize: typography.heading, fontWeight: '800' },
   countBadge: { backgroundColor: colors.surface, borderColor: colors.border, borderWidth: 1, borderRadius: radius.pill, paddingHorizontal: spacing.sm, paddingVertical: spacing.xs },
   countText: { color: colors.textSecondary, fontSize: typography.overline, fontWeight: '700' },
+  insightsCard: { backgroundColor: colors.surface, borderColor: colors.border, borderWidth: 1, borderRadius: radius.md, padding: spacing.md, marginBottom: spacing.lg, ...shadows.sm },
+  insightsHeader: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: spacing.md },
+  insightsTitleGroup: { flex: 1, paddingRight: spacing.sm },
+  insightsTitle: { color: colors.navy, fontSize: typography.body, lineHeight: 21, fontWeight: '800' },
+  insightsSubtitle: { color: colors.textMuted, fontSize: typography.overline, lineHeight: 16, marginTop: 3 },
+  rateBadge: { minWidth: 70, alignItems: 'center', backgroundColor: colors.blueLight, borderRadius: radius.sm, paddingHorizontal: spacing.sm, paddingVertical: spacing.xs },
+  rateValue: { color: colors.primary, fontSize: typography.heading, lineHeight: 24, fontWeight: '800' },
+  rateLabel: { color: colors.info, fontSize: 8, fontWeight: '700', letterSpacing: 0.5, marginTop: 1 },
+  metricGrid: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', rowGap: spacing.sm },
+  metricCell: { width: '48.5%', minHeight: 58, justifyContent: 'center', backgroundColor: colors.background, borderRadius: radius.sm, paddingHorizontal: spacing.sm, paddingVertical: spacing.xs },
+  metricValue: { color: colors.navy, fontSize: typography.heading, lineHeight: 24, fontWeight: '800' },
+  metricValueneutral: { color: colors.navy },
+  metricValuesuccess: { color: '#047857' },
+  metricValuewarning: { color: colors.warning },
+  metricValueinfo: { color: colors.info },
+  metricLabel: { color: colors.textMuted, fontSize: typography.overline, lineHeight: 15, fontWeight: '600', marginTop: 2 },
+  rateTrack: { height: 7, backgroundColor: colors.border, borderRadius: radius.pill, overflow: 'hidden', marginTop: spacing.md },
+  rateFill: { height: '100%', backgroundColor: colors.success, borderRadius: radius.pill },
+  rateExplanation: { color: colors.textMuted, fontSize: typography.overline, lineHeight: 16, marginTop: spacing.sm },
   sessionCard: { backgroundColor: colors.surface, borderColor: colors.border, borderWidth: 1, borderRadius: radius.md, padding: spacing.md, marginBottom: spacing.md, ...shadows.sm },
   cardTop: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: spacing.xs, marginBottom: spacing.sm },
   statusRow: { flexDirection: 'row', alignItems: 'center' },
