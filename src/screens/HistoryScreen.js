@@ -104,7 +104,7 @@ export default function HistoryScreen({ navigation }) {
           </View>
         ) : null}
 
-        {!loading ? (
+        {!loading && (!errorMessage || sessions.length > 0) ? (
           <View style={styles.summaryRow}>
             <Text style={styles.sectionTitle}>Sessions</Text>
             <View style={styles.countBadge}><Text style={styles.countText}>{sessions.length} {sessions.length === 1 ? 'record' : 'records'}</Text></View>
@@ -115,14 +115,16 @@ export default function HistoryScreen({ navigation }) {
         {loading ? (
           <View style={styles.loadingCard}><Text style={styles.loadingTitle}>Loading your history</Text><Text style={styles.body}>Your troubleshooting sessions will appear here.</Text></View>
         ) : sessions.length === 0 ? (
-          <View style={styles.emptyCard}>
-            <View style={styles.emptyIcon}><Text style={styles.emptyIconText}>◷</Text></View>
-            <Text style={styles.emptyTitle}>Your history starts with a fix</Text>
-            <Text style={styles.body}>Previous troubleshooting sessions will appear here, ready to revisit whenever you need them.</Text>
-            <Pressable accessibilityRole="button" onPress={() => navigation.navigate('Library', { categoryId: null })} style={({ pressed }) => [styles.browseButton, pressed && styles.pressed]}>
-              <Text style={styles.browseButtonText}>Browse guides</Text><Text style={styles.browseArrow}>›</Text>
-            </Pressable>
-          </View>
+          errorMessage ? null : (
+            <View style={styles.emptyCard}>
+              <View style={styles.emptyIcon}><Text style={styles.emptyIconText}>◷</Text></View>
+              <Text style={styles.emptyTitle}>Your history starts with a fix</Text>
+              <Text style={styles.body}>Previous troubleshooting sessions will appear here, ready to revisit whenever you need them.</Text>
+              <Pressable accessibilityRole="button" onPress={() => navigation.navigate('Library', { categoryId: null })} style={({ pressed }) => [styles.browseButton, pressed && styles.pressed]}>
+                <Text style={styles.browseButtonText}>Browse guides</Text><Text style={styles.browseArrow}>›</Text>
+              </Pressable>
+            </View>
+          )
         ) : (
           sessions.map((session) => {
             const guide = guides.find((item) => item.id === session.guideId);

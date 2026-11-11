@@ -63,7 +63,7 @@ export default function SavedGuidesScreen({ navigation }) {
             <Text style={styles.eyebrow}>YOUR PERSONAL COLLECTION</Text>
             <Text style={styles.subtitle}>Keep useful fixes close at hand for whenever you need them.</Text>
           </View>
-          {!loading ? (
+          {!loading && (!errorMessage || savedGuides.length > 0) ? (
             <View style={styles.countBadge} accessibilityLabel={`${savedGuides.length} saved ${savedGuides.length === 1 ? 'guide' : 'guides'}`}>
               <Text style={styles.countNumber}>{savedGuides.length}</Text>
               <Text style={styles.countLabel}>{savedGuides.length === 1 ? 'SAVED GUIDE' : 'SAVED GUIDES'}</Text>
@@ -80,14 +80,16 @@ export default function SavedGuidesScreen({ navigation }) {
             <Text style={styles.body}>Your collection will be ready in a moment.</Text>
           </View>
         ) : savedGuides.length === 0 ? (
-          <View style={styles.emptyCard}>
-            <View style={styles.emptyIcon}><Text style={styles.emptyIconText}>♡</Text></View>
-            <Text style={styles.emptyTitle}>Your collection starts here</Text>
-            <Text style={styles.body}>Save troubleshooting guides for quick access later. Your saved guides stay on this device.</Text>
-            <Pressable accessibilityRole="button" onPress={() => navigation.navigate('Library', { categoryId: null })} style={({ pressed }) => [styles.browseButton, pressed && styles.pressed]}>
-              <Text style={styles.browseButtonText}>Browse troubleshooting guides</Text><Text style={styles.browseArrow}>›</Text>
-            </Pressable>
-          </View>
+          errorMessage ? null : (
+            <View style={styles.emptyCard}>
+              <View style={styles.emptyIcon}><Text style={styles.emptyIconText}>♡</Text></View>
+              <Text style={styles.emptyTitle}>Your collection starts here</Text>
+              <Text style={styles.body}>Save troubleshooting guides for quick access later. Your saved guides stay on this device.</Text>
+              <Pressable accessibilityRole="button" onPress={() => navigation.navigate('Library', { categoryId: null })} style={({ pressed }) => [styles.browseButton, pressed && styles.pressed]}>
+                <Text style={styles.browseButtonText}>Browse troubleshooting guides</Text><Text style={styles.browseArrow}>›</Text>
+              </Pressable>
+            </View>
+          )
         ) : (
           savedGuides.map((guide) => (
             <View key={guide.id} style={styles.guideCard}>
