@@ -1,7 +1,11 @@
+import { useMemo } from 'react';
+import { useTheme } from '../styles/ThemeContext';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
-import { colors, radius, spacing, typography } from '../styles/theme';
+import { radius, spacing, typography } from '../styles/theme';
 
 export default function SearchBar({ value, onChangeText }) {
+  const { colors } = useTheme();
+  const styles = useStyles();
   return (
     <View style={styles.container}>
       <Text style={styles.searchIcon}>⌕</Text>
@@ -19,7 +23,9 @@ export default function SearchBar({ value, onChangeText }) {
   );
 }
 
-const styles = StyleSheet.create({
+function useStyles() {
+  const { colors, shadows } = useTheme();
+  return useMemo(() => StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -33,4 +39,5 @@ const styles = StyleSheet.create({
   },
   searchIcon: { color: colors.blue, fontSize: 24, marginRight: spacing.sm },
   input: { flex: 1, color: colors.text, fontSize: typography.body, paddingVertical: spacing.sm },
-});
+}), [colors, shadows]);
+}

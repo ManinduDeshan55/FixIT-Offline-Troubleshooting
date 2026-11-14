@@ -1,4 +1,5 @@
-import { useCallback, useState } from 'react';
+import { useTheme } from '../styles/ThemeContext';
+import {useCallback, useState, useMemo} from 'react';
 import { Pressable, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { useSQLiteContext } from 'expo-sqlite';
@@ -6,9 +7,11 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import categories from '../data/categories.json';
 import guides from '../data/guides.json';
 import { getAllSessions } from '../database/storage';
-import { colors, radius, spacing, typography, shadows } from '../styles/theme';
+import { radius, spacing, typography } from '../styles/theme';
 
 export default function HomeScreen({ navigation }) {
+  const { colors, mode, toggleTheme } = useTheme();
+  const styles = useStyles();
   const db = useSQLiteContext();
   const insets = useSafeAreaInsets();
   const [recentSession, setRecentSession] = useState(null);
@@ -37,6 +40,16 @@ export default function HomeScreen({ navigation }) {
           </View>
           <View style={styles.brandMark}><Text style={styles.brandMarkText}>F</Text><View style={styles.brandDot} /></View>
         </View>
+
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel={`Current theme: ${mode} mode. Switch to ${mode === 'light' ? 'dark' : 'light'} mode.`}
+          onPress={toggleTheme}
+          style={({ pressed }) => [styles.themeToggle, pressed && styles.pressed]}
+        >
+          <Text style={styles.themeToggleText}>{mode === 'light' ? '☀  Light mode' : '☾  Dark mode'}</Text>
+          <Text style={styles.themeToggleAction}>Switch</Text>
+        </Pressable>
 
         <View style={styles.hero}>
           <View style={styles.heroOrb} />
@@ -92,6 +105,7 @@ export default function HomeScreen({ navigation }) {
 }
 
 function CategoryMark({ index }) {
+  const styles = useStyles();
   const stroke = styles.markStroke;
   if (index === 0) return <View style={styles.wifiMark}><View style={[styles.wifiArc, styles.wifiArcLarge]} /><View style={[styles.wifiArc, styles.wifiArcSmall]} /><View style={styles.wifiDot} /></View>;
   if (index === 1) return <View style={styles.performanceMark}><View style={[stroke, { height: 10 }]} /><View style={[stroke, { height: 16 }]} /><View style={[stroke, { height: 13 }]} /><View style={[stroke, { height: 19 }]} /></View>;
@@ -100,35 +114,41 @@ function CategoryMark({ index }) {
 }
 
 function SectionHeading({ title, action, onPress }) {
+  const styles = useStyles();
   return <View style={styles.sectionHeading}><Text style={styles.sectionTitle}>{title}</Text><Pressable accessibilityRole="button" onPress={onPress} hitSlop={8}><Text style={styles.sectionAction}>{action}</Text></Pressable></View>;
 }
 
-const styles = StyleSheet.create({
+function useStyles() {
+  const { colors, shadows } = useTheme();
+  return useMemo(() => StyleSheet.create({
   safeArea: { flex: 1, backgroundColor: colors.background },
   content: { paddingHorizontal: spacing.lg, paddingTop: spacing.md },
   header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: spacing.lg },
+  themeToggle: { minHeight: 44, flexDirection: 'row', alignItems: 'center', alignSelf: 'flex-end', borderColor: colors.border, borderWidth: 1, borderRadius: radius.pill, backgroundColor: colors.surface, paddingHorizontal: spacing.md, marginTop: -spacing.sm, marginBottom: spacing.md },
+  themeToggleText: { color: colors.text, fontSize: typography.caption, fontWeight: '700' },
+  themeToggleAction: { color: colors.primary, fontSize: typography.overline, fontWeight: '700', marginLeft: spacing.sm },
   eyebrow: { color: colors.textMuted, fontSize: typography.overline, fontWeight: '700', letterSpacing: 1.5, marginBottom: 2 },
   wordmark: { color: colors.navy, fontSize: typography.title, fontWeight: '800', letterSpacing: -0.7 },
-  brandMark: { width: 48, height: 48, borderRadius: radius.md, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.primary, ...shadows.sm },
+  brandMark: { width: 48, height: 48, borderRadius: radius.md, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.primaryButton, ...shadows.sm },
   brandMarkText: { color: colors.white, fontSize: typography.heading, fontWeight: '800' },
   brandDot: { position: 'absolute', right: 7, bottom: 7, width: 7, height: 7, borderRadius: 4, backgroundColor: colors.accent, borderWidth: 1, borderColor: colors.primary },
-  hero: { overflow: 'hidden', position: 'relative', backgroundColor: colors.navy, borderRadius: radius.lg, padding: spacing.md, marginBottom: spacing.md, ...shadows.md },
+  hero: { overflow: 'hidden', position: 'relative', backgroundColor: colors.hero, borderRadius: radius.lg, padding: spacing.md, marginBottom: spacing.md, ...shadows.md },
   heroOrb: { position: 'absolute', right: -48, top: -68, width: 180, height: 180, borderRadius: 90, backgroundColor: colors.navyLight, opacity: 0.75 },
   heroEyebrow: { color: colors.accent, fontSize: typography.overline, fontWeight: '700', letterSpacing: 1.2, marginBottom: spacing.xs },
   heroTitle: { color: colors.white, fontSize: typography.title, fontWeight: '800', lineHeight: 34, marginBottom: spacing.xs },
-  heroCopy: { color: '#D7E5F2', fontSize: typography.body, lineHeight: 22, marginBottom: spacing.sm, maxWidth: 290 },
+  heroCopy: { color: colors.heroText, fontSize: typography.body, lineHeight: 22, marginBottom: spacing.sm, maxWidth: 290 },
   heroBottom: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: spacing.sm },
   offlineBadge: { flexDirection: 'row', alignItems: 'center', backgroundColor: colors.navyLight, borderRadius: radius.pill, paddingHorizontal: spacing.sm, paddingVertical: spacing.sm },
   onlineDot: { width: 8, height: 8, borderRadius: 4, backgroundColor: colors.success, marginRight: 7 },
   offlineText: { color: colors.white, fontSize: typography.caption, fontWeight: '600' },
-  heroButton: { minHeight: 44, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: colors.primary, borderRadius: radius.sm, paddingHorizontal: spacing.sm },
+  heroButton: { minHeight: 44, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: colors.primaryButton, borderRadius: radius.sm, paddingHorizontal: spacing.sm },
   heroButtonText: { color: colors.white, fontSize: typography.caption, fontWeight: '700' },
   buttonArrow: { color: colors.white, fontSize: 22, marginLeft: 7, lineHeight: 24 },
-  searchEntry: { minHeight: 52, flexDirection: 'row', alignItems: 'center', backgroundColor: colors.white, borderColor: colors.border, borderWidth: 1, borderRadius: radius.md, paddingHorizontal: spacing.md, marginBottom: spacing.lg, ...shadows.sm },
+  searchEntry: { minHeight: 52, flexDirection: 'row', alignItems: 'center', backgroundColor: colors.surface, borderColor: colors.border, borderWidth: 1, borderRadius: radius.md, paddingHorizontal: spacing.md, marginBottom: spacing.lg, ...shadows.sm },
   searchIcon: { color: colors.primary, fontSize: 26, marginRight: spacing.sm },
   searchPlaceholder: { flex: 1, color: colors.textMuted, fontSize: typography.body },
   searchArrow: { color: colors.textMuted, fontSize: 26 },
-  wizardEntry: { minHeight: 72, flexDirection: 'row', alignItems: 'center', backgroundColor: colors.white, borderColor: colors.border, borderWidth: 1, borderRadius: radius.md, padding: spacing.md, marginBottom: spacing.lg, ...shadows.sm },
+  wizardEntry: { minHeight: 72, flexDirection: 'row', alignItems: 'center', backgroundColor: colors.surface, borderColor: colors.border, borderWidth: 1, borderRadius: radius.md, padding: spacing.md, marginBottom: spacing.lg, ...shadows.sm },
   wizardIcon: { width: 40, height: 40, borderRadius: radius.sm, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.infoLight, marginRight: spacing.md },
   wizardIconText: { color: colors.primary, fontSize: typography.heading, fontWeight: '800' },
   wizardCopy: { flex: 1 },
@@ -140,7 +160,7 @@ const styles = StyleSheet.create({
   sectionTitle: { color: colors.navy, fontSize: typography.heading, fontWeight: '700' },
   sectionAction: { color: colors.primary, fontSize: typography.caption, fontWeight: '700' },
   categoryGrid: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' },
-  categoryCard: { width: '48%', minHeight: 126, backgroundColor: colors.white, borderColor: colors.border, borderWidth: 1, borderRadius: radius.md, padding: spacing.md, marginBottom: spacing.sm, ...shadows.sm },
+  categoryCard: { width: '48%', minHeight: 126, backgroundColor: colors.surface, borderColor: colors.border, borderWidth: 1, borderRadius: radius.md, padding: spacing.md, marginBottom: spacing.sm, ...shadows.sm },
   categoryIcon: { width: 36, height: 36, borderRadius: radius.sm, alignItems: 'center', justifyContent: 'center', marginBottom: spacing.sm },
   markStroke: { width: 3, borderRadius: 2, backgroundColor: colors.primary, alignSelf: 'flex-end' },
   wifiMark: { width: 25, height: 23, alignItems: 'center', justifyContent: 'flex-end' },
@@ -151,7 +171,7 @@ const styles = StyleSheet.create({
   deviceMark: { width: 23, height: 22, alignItems: 'center', justifyContent: 'flex-end' }, deviceTop: { position: 'absolute', top: 1, width: 13, height: 4, borderWidth: 2, borderColor: colors.primary, borderRadius: 2 }, deviceBody: { width: 21, height: 14, borderWidth: 2, borderColor: colors.primary, borderRadius: 3, alignItems: 'center', justifyContent: 'center' }, deviceSlot: { width: 8, height: 2, borderRadius: 1, backgroundColor: colors.primary },
   categoryName: { color: colors.text, fontSize: typography.caption, lineHeight: 18, fontWeight: '700' },
   categoryArrow: { color: colors.textMuted, fontSize: typography.overline, marginTop: spacing.xs },
-  resumeCard: { flexDirection: 'row', alignItems: 'center', backgroundColor: colors.white, borderColor: colors.border, borderWidth: 1, borderRadius: radius.md, padding: spacing.md, ...shadows.sm },
+  resumeCard: { flexDirection: 'row', alignItems: 'center', backgroundColor: colors.surface, borderColor: colors.border, borderWidth: 1, borderRadius: radius.md, padding: spacing.md, ...shadows.sm },
   resumeIcon: { width: 42, height: 42, borderRadius: radius.sm, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.infoLight, marginRight: spacing.md },
   resumeIconText: { color: colors.primary, fontSize: 25 },
   resumeCopy: { flex: 1 },
@@ -161,4 +181,5 @@ const styles = StyleSheet.create({
   chevron: { color: colors.textMuted, fontSize: 27, marginLeft: spacing.sm },
   footerNote: { color: colors.textMuted, fontSize: typography.caption, textAlign: 'center', marginTop: spacing.sm, paddingBottom: spacing.sm },
   pressed: { opacity: 0.78 },
-});
+}), [colors, shadows]);
+}

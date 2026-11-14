@@ -1,11 +1,12 @@
-import { useCallback, useState } from 'react';
+import { useTheme } from '../styles/ThemeContext';
+import {useCallback, useState, useMemo} from 'react';
 import { Pressable, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { useSQLiteContext } from 'expo-sqlite';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import guides from '../data/guides.json';
 import { getAllSessions } from '../database/storage';
-import { colors, radius, spacing, typography, shadows } from '../styles/theme';
+import { radius, spacing, typography } from '../styles/theme';
 
 function getStatusLabel(status) {
   if (status === 'solved') return 'Solved';
@@ -37,6 +38,7 @@ function summarizeSessions(rows) {
 }
 
 export default function HistoryScreen({ navigation }) {
+  const styles = useStyles();
   const db = useSQLiteContext();
   const insets = useSafeAreaInsets();
   const [sessions, setSessions] = useState([]);
@@ -176,6 +178,7 @@ export default function HistoryScreen({ navigation }) {
 }
 
 function Metric({ label, value, tone }) {
+  const styles = useStyles();
   return (
     <View style={styles.metricCell}>
       <Text style={[styles.metricValue, styles[`metricValue${tone}`]]}>{value}</Text>
@@ -184,7 +187,9 @@ function Metric({ label, value, tone }) {
   );
 }
 
-const styles = StyleSheet.create({
+function useStyles() {
+  const { colors, shadows } = useTheme();
+  return useMemo(() => StyleSheet.create({
   safeArea: { flex: 1, backgroundColor: colors.background },
   content: { padding: spacing.lg, paddingTop: spacing.md },
   intro: { flexDirection: 'row', alignItems: 'center', marginBottom: spacing.lg },
@@ -209,12 +214,12 @@ const styles = StyleSheet.create({
   metricCell: { width: '48.5%', minHeight: 58, justifyContent: 'center', backgroundColor: colors.background, borderRadius: radius.sm, paddingHorizontal: spacing.sm, paddingVertical: spacing.xs },
   metricValue: { color: colors.navy, fontSize: typography.heading, lineHeight: 24, fontWeight: '800' },
   metricValueneutral: { color: colors.navy },
-  metricValuesuccess: { color: '#047857' },
+  metricValuesuccess: { color: colors.successText },
   metricValuewarning: { color: colors.warning },
   metricValueinfo: { color: colors.info },
   metricLabel: { color: colors.textMuted, fontSize: typography.overline, lineHeight: 15, fontWeight: '600', marginTop: 2 },
   rateTrack: { height: 7, backgroundColor: colors.border, borderRadius: radius.pill, overflow: 'hidden', marginTop: spacing.md },
-  rateFill: { height: '100%', backgroundColor: colors.success, borderRadius: radius.pill },
+  rateFill: { height: '100%', backgroundColor: colors.successButton, borderRadius: radius.pill },
   rateExplanation: { color: colors.textMuted, fontSize: typography.overline, lineHeight: 16, marginTop: spacing.sm },
   sessionCard: { backgroundColor: colors.surface, borderColor: colors.border, borderWidth: 1, borderRadius: radius.md, padding: spacing.md, marginBottom: spacing.md, ...shadows.sm },
   cardTop: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: spacing.xs, marginBottom: spacing.sm },
@@ -229,7 +234,7 @@ const styles = StyleSheet.create({
   unresolvedBadge: { backgroundColor: colors.warningLight },
   statusText: { fontSize: typography.overline, fontWeight: '700' },
   inProgressText: { color: colors.info },
-  solvedText: { color: '#047857' },
+  solvedText: { color: colors.successText },
   unresolvedText: { color: colors.warning },
   date: { color: colors.textMuted, fontSize: typography.overline },
   guideTitle: { color: colors.navy, fontSize: typography.body, lineHeight: 23, fontWeight: '800', marginBottom: spacing.md },
@@ -239,7 +244,7 @@ const styles = StyleSheet.create({
   progressTrack: { height: 7, backgroundColor: colors.border, borderRadius: radius.pill, overflow: 'hidden', marginBottom: spacing.md },
   progressFill: { height: '100%', backgroundColor: colors.primary, borderRadius: radius.pill },
   solvedFill: { backgroundColor: colors.success },
-  actionButton: { minHeight: 48, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: colors.primary, borderRadius: radius.sm, paddingHorizontal: spacing.md },
+  actionButton: { minHeight: 48, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: colors.primaryButton, borderRadius: radius.sm, paddingHorizontal: spacing.md },
   actionButtonText: { color: colors.white, fontSize: typography.caption, fontWeight: '700' },
   actionArrow: { color: colors.white, fontSize: 22, marginLeft: spacing.sm },
   disabledButton: { opacity: 0.5 },
@@ -250,9 +255,10 @@ const styles = StyleSheet.create({
   emptyIconText: { color: colors.primary, fontSize: 34 },
   emptyTitle: { color: colors.navy, fontSize: typography.heading, lineHeight: 26, fontWeight: '800', textAlign: 'center', marginBottom: spacing.sm },
   body: { color: colors.textMuted, fontSize: typography.body, lineHeight: 23, textAlign: 'center' },
-  browseButton: { minHeight: 48, alignSelf: 'stretch', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: colors.primary, borderRadius: radius.md, paddingHorizontal: spacing.md, marginTop: spacing.lg },
+  browseButton: { minHeight: 48, alignSelf: 'stretch', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: colors.primaryButton, borderRadius: radius.md, paddingHorizontal: spacing.md, marginTop: spacing.lg },
   browseButtonText: { color: colors.white, fontSize: typography.caption, fontWeight: '700' },
   browseArrow: { color: colors.white, fontSize: 22, marginLeft: spacing.sm },
   error: { color: colors.danger, backgroundColor: colors.dangerLight, borderRadius: radius.sm, padding: spacing.md, fontSize: typography.caption, lineHeight: 19, marginBottom: spacing.md },
   pressed: { opacity: 0.78 },
-});
+}), [colors, shadows]);
+}

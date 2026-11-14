@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useTheme } from '../styles/ThemeContext';
+import {useEffect, useState, useMemo} from 'react';
 import { Pressable, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSQLiteContext } from 'expo-sqlite';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -15,9 +16,10 @@ import {
   updateSessionCurrentStep,
   updateSessionStatus,
 } from '../database/storage';
-import { colors, radius, spacing, typography } from '../styles/theme';
+import { radius, spacing, typography } from '../styles/theme';
 
 export default function GuideDetailsScreen({ route }) {
+  const styles = useStyles();
   const insets = useSafeAreaInsets();
   const guideId = route.params?.guideId;
   const resumedSessionId = route.params?.sessionId || null;
@@ -445,11 +447,13 @@ export default function GuideDetailsScreen({ route }) {
   );
 }
 
-const styles = StyleSheet.create({
+function useStyles() {
+  const { colors, shadows } = useTheme();
+  return useMemo(() => StyleSheet.create({
   safeArea: { flex: 1, backgroundColor: colors.background },
   content: { padding: spacing.lg, paddingBottom: spacing.xl },
   overviewContent: { paddingTop: spacing.md, paddingBottom: spacing.xxl },
-  overviewHero: { backgroundColor: colors.surface, borderColor: colors.border, borderWidth: 1, borderRadius: radius.lg, padding: spacing.lg, marginBottom: spacing.md, shadowColor: colors.navy, shadowOffset: { width: 0, height: 3 }, shadowOpacity: 0.07, shadowRadius: 8, elevation: 2 },
+  overviewHero: { backgroundColor: colors.surface, borderColor: colors.border, borderWidth: 1, borderRadius: radius.lg, padding: spacing.lg, marginBottom: spacing.md, shadowColor: colors.black, shadowOffset: { width: 0, height: 3 }, shadowOpacity: 0.07, shadowRadius: 8, elevation: 2 },
   overviewEyebrow: { color: colors.primary, fontSize: typography.overline, fontWeight: '700', letterSpacing: 1.1, marginBottom: spacing.sm },
   overviewTitle: { color: colors.navy, fontSize: typography.title, lineHeight: 34, fontWeight: '800', letterSpacing: -0.4 },
   overviewDescription: { color: colors.textSecondary, fontSize: typography.body, lineHeight: 23, marginTop: spacing.sm },
@@ -466,7 +470,7 @@ const styles = StyleSheet.create({
   overviewPressed: { opacity: 0.78 },
   overviewSection: { marginBottom: spacing.lg },
   overviewSectionTitle: { color: colors.navy, fontSize: typography.heading, fontWeight: '700', marginBottom: spacing.sm },
-  overviewInfoCard: { backgroundColor: colors.surface, borderColor: colors.border, borderWidth: 1, borderRadius: radius.md, paddingHorizontal: spacing.md, shadowColor: colors.navy, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.04, shadowRadius: 6, elevation: 1 },
+  overviewInfoCard: { backgroundColor: colors.surface, borderColor: colors.border, borderWidth: 1, borderRadius: radius.md, paddingHorizontal: spacing.md, shadowColor: colors.black, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.04, shadowRadius: 6, elevation: 1 },
   overviewListRow: { flexDirection: 'row', alignItems: 'flex-start', paddingVertical: spacing.md },
   overviewListRowBorder: { borderTopWidth: 1, borderTopColor: colors.border },
   overviewListText: { flex: 1, color: colors.text, fontSize: typography.body, lineHeight: 22, paddingTop: 1 },
@@ -476,11 +480,11 @@ const styles = StyleSheet.create({
   toolMarkerText: { color: colors.success, fontSize: typography.caption, fontWeight: '700' },
   overviewStepNumber: { width: 28, height: 28, borderRadius: radius.pill, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.blueLight, marginRight: spacing.sm },
   overviewStepNumberText: { color: colors.primary, fontSize: typography.caption, fontWeight: '700' },
-  overviewWarningCard: { flexDirection: 'row', alignItems: 'flex-start', backgroundColor: colors.warningLight, borderColor: '#F3D38A', borderWidth: 1, borderRadius: radius.md, padding: spacing.md, marginBottom: spacing.lg },
-  warningIcon: { width: 28, height: 28, borderRadius: radius.pill, alignItems: 'center', justifyContent: 'center', backgroundColor: '#FDE68A', marginRight: spacing.sm },
+  overviewWarningCard: { flexDirection: 'row', alignItems: 'flex-start', backgroundColor: colors.warningLight, borderColor: colors.warningBorder, borderWidth: 1, borderRadius: radius.md, padding: spacing.md, marginBottom: spacing.lg },
+  warningIcon: { width: 28, height: 28, borderRadius: radius.pill, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.warningIcon, marginRight: spacing.sm },
   warningIconText: { color: colors.warning, fontSize: typography.body, fontWeight: '800' },
   warningCopy: { flex: 1 },
-  overviewPrimaryButton: { minHeight: 52, alignItems: 'center', justifyContent: 'center', paddingHorizontal: spacing.md, paddingVertical: spacing.md, backgroundColor: colors.primary, borderRadius: radius.md, marginTop: spacing.sm, marginBottom: spacing.md, shadowColor: colors.primary, shadowOffset: { width: 0, height: 3 }, shadowOpacity: 0.2, shadowRadius: 6, elevation: 3 },
+  overviewPrimaryButton: { minHeight: 52, alignItems: 'center', justifyContent: 'center', paddingHorizontal: spacing.md, paddingVertical: spacing.md, backgroundColor: colors.primaryButton, borderRadius: radius.md, marginTop: spacing.sm, marginBottom: spacing.md, shadowColor: colors.primary, shadowOffset: { width: 0, height: 3 }, shadowOpacity: 0.2, shadowRadius: 6, elevation: 3 },
   overviewPrimaryButtonText: { color: colors.white, fontSize: typography.body, fontWeight: '700', textAlign: 'center' },
   progressOverline: { color: colors.textMuted, fontSize: typography.overline, fontWeight: '700', letterSpacing: 0.9, marginBottom: 2 },
   progressStatus: { flexDirection: 'row', alignItems: 'center', backgroundColor: colors.infoLight, borderRadius: radius.pill, paddingHorizontal: spacing.sm, paddingVertical: spacing.xs },
@@ -492,9 +496,9 @@ const styles = StyleSheet.create({
   outcomePromptHeader: { flexDirection: 'row', alignItems: 'center', marginBottom: spacing.xs },
   outcomePromptIcon: { width: 30, height: 30, borderRadius: radius.sm, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.blueLight, marginRight: spacing.sm },
   outcomePromptIconText: { color: colors.primary, fontWeight: '800' },
-  guidedSolvedCard: { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'flex-start', backgroundColor: colors.successLight, borderColor: '#A7E6CD', borderWidth: 1, borderRadius: radius.md, padding: spacing.md, marginBottom: spacing.md },
-  guidedUnresolvedCard: { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'flex-start', backgroundColor: colors.warningLight, borderColor: '#F3D38A', borderWidth: 1, borderRadius: radius.md, padding: spacing.md, marginBottom: spacing.md },
-  completionMark: { width: 34, height: 34, borderRadius: radius.pill, backgroundColor: colors.white, alignItems: 'center', justifyContent: 'center', marginRight: spacing.sm },
+  guidedSolvedCard: { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'flex-start', backgroundColor: colors.successLight, borderColor: colors.successBorder, borderWidth: 1, borderRadius: radius.md, padding: spacing.md, marginBottom: spacing.md },
+  guidedUnresolvedCard: { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'flex-start', backgroundColor: colors.warningLight, borderColor: colors.warningBorder, borderWidth: 1, borderRadius: radius.md, padding: spacing.md, marginBottom: spacing.md },
+  completionMark: { width: 34, height: 34, borderRadius: radius.pill, backgroundColor: colors.surface, alignItems: 'center', justifyContent: 'center', marginRight: spacing.sm },
   completionMarkText: { color: colors.success, fontSize: typography.heading, fontWeight: '800' },
   card: { backgroundColor: colors.surface, borderColor: colors.border, borderWidth: 1, borderRadius: radius.md, padding: spacing.lg },
   eyebrow: { color: colors.blue, fontSize: typography.caption, fontWeight: '700', letterSpacing: 1.1, marginBottom: spacing.sm },
@@ -505,31 +509,31 @@ const styles = StyleSheet.create({
   favouriteButtonSaved: { backgroundColor: colors.blueLight },
   favouriteButtonText: { color: colors.blue, fontSize: typography.caption, fontWeight: '700' },
   favouriteButtonSavedText: { color: colors.navy },
-  error: { color: '#A12929', backgroundColor: '#FFF0F0', borderRadius: radius.sm, padding: spacing.md, fontSize: typography.caption, lineHeight: 19, marginBottom: spacing.md },
+  error: { color: colors.error, backgroundColor: colors.errorLight, borderRadius: radius.sm, padding: spacing.md, fontSize: typography.caption, lineHeight: 19, marginBottom: spacing.md },
   section: { marginTop: spacing.xl },
   sectionTitle: { color: colors.navy, fontSize: typography.body, fontWeight: '700', marginBottom: spacing.md },
   listRow: { flexDirection: 'row', alignItems: 'flex-start', marginBottom: spacing.sm },
   bullet: { color: colors.blue, fontSize: typography.body, lineHeight: 23, marginRight: spacing.sm },
   listText: { flex: 1, color: colors.text, fontSize: typography.body, lineHeight: 23 },
-  warningCard: { backgroundColor: '#FFF7E8', borderColor: '#F1D39B', borderWidth: 1, borderRadius: radius.md, padding: spacing.md, marginTop: spacing.lg },
-  warningTitle: { color: '#835507', fontSize: typography.body, fontWeight: '700', marginBottom: spacing.xs },
-  warningText: { color: '#694B18', fontSize: typography.body, lineHeight: 22 },
+  warningCard: { backgroundColor: colors.warningSurface, borderColor: colors.warningBorder, borderWidth: 1, borderRadius: radius.md, padding: spacing.md, marginTop: spacing.lg },
+  warningTitle: { color: colors.warningTitle, fontSize: typography.body, fontWeight: '700', marginBottom: spacing.xs },
+  warningText: { color: colors.warningText, fontSize: typography.body, lineHeight: 22 },
   detailStep: { flexDirection: 'row', alignItems: 'flex-start', marginBottom: spacing.md },
   stepNumberSmall: { width: 28, height: 28, borderRadius: radius.pill, backgroundColor: colors.blueLight, alignItems: 'center', justifyContent: 'center', marginRight: spacing.sm },
   stepNumberSmallText: { color: colors.blue, fontSize: typography.caption, fontWeight: '700' },
   primaryButton: { alignItems: 'center', padding: spacing.md, backgroundColor: colors.blue, borderRadius: radius.md, marginTop: spacing.xl },
-  primaryButtonText: { color: colors.surface, fontSize: typography.body, fontWeight: '700' },
+  primaryButtonText: { color: colors.white, fontSize: typography.body, fontWeight: '700' },
   buttonPressed: { opacity: 0.8 },
   guidedHeader: { flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: spacing.lg },
   guidedHeaderCopy: { flex: 1, paddingRight: spacing.sm },
   backToGuideText: { color: colors.blue, fontSize: typography.caption, fontWeight: '700', paddingTop: spacing.xs },
-  progressCard: { backgroundColor: colors.surface, borderColor: colors.border, borderWidth: 1, borderRadius: radius.md, padding: spacing.md, marginBottom: spacing.md, shadowColor: colors.navy, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.05, shadowRadius: 7, elevation: 2 },
+  progressCard: { backgroundColor: colors.surface, borderColor: colors.border, borderWidth: 1, borderRadius: radius.md, padding: spacing.md, marginBottom: spacing.md, shadowColor: colors.black, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.05, shadowRadius: 7, elevation: 2 },
   progressLabels: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: spacing.md },
   progressStep: { color: colors.navy, fontSize: typography.heading, fontWeight: '800' },
   progressCount: { color: colors.info, fontSize: typography.overline, fontWeight: '700' },
   progressTrack: { height: 8, borderRadius: radius.pill, backgroundColor: colors.border, overflow: 'hidden' },
   progressFill: { height: '100%', backgroundColor: colors.blue, borderRadius: radius.pill },
-  currentStepCard: { backgroundColor: colors.surface, borderColor: colors.border, borderWidth: 1, borderRadius: radius.lg, padding: spacing.lg, alignItems: 'flex-start', shadowColor: colors.navy, shadowOffset: { width: 0, height: 3 }, shadowOpacity: 0.07, shadowRadius: 9, elevation: 3 },
+  currentStepCard: { backgroundColor: colors.surface, borderColor: colors.border, borderWidth: 1, borderRadius: radius.lg, padding: spacing.lg, alignItems: 'flex-start', shadowColor: colors.black, shadowOffset: { width: 0, height: 3 }, shadowOpacity: 0.07, shadowRadius: 9, elevation: 3 },
   stepNumberLarge: { width: 48, height: 48, borderRadius: radius.md, backgroundColor: colors.blueLight, alignItems: 'center', justifyContent: 'center', marginBottom: spacing.md },
   stepNumberLargeText: { color: colors.primary, fontSize: typography.heading, fontWeight: '800' },
   currentStepTitle: { color: colors.navy, fontSize: typography.heading, fontWeight: '800', marginBottom: spacing.sm },
@@ -537,26 +541,27 @@ const styles = StyleSheet.create({
   completeStepButton: { minHeight: 48, alignSelf: 'stretch', alignItems: 'center', justifyContent: 'center', borderColor: colors.primary, borderWidth: 1.5, borderRadius: radius.md, padding: spacing.md, marginTop: spacing.lg, backgroundColor: colors.surface },
   completedStepButton: { backgroundColor: colors.successLight, borderColor: colors.success },
   completeStepText: { color: colors.primary, fontSize: typography.body, fontWeight: '700', textAlign: 'center' },
-  completedStepText: { color: '#047857' },
+  completedStepText: { color: colors.successText },
   navigationRow: { flexDirection: 'row', marginTop: spacing.md, gap: spacing.sm },
   stepNavButton: { flex: 1, minHeight: 48, alignItems: 'center', justifyContent: 'center', borderColor: colors.border, borderWidth: 1, borderRadius: radius.md, padding: spacing.md, backgroundColor: colors.surface },
-  nextButton: { backgroundColor: colors.primary, borderColor: colors.primary, marginLeft: 0 },
+  nextButton: { backgroundColor: colors.primaryButton, borderColor: colors.primary, marginLeft: 0 },
   stepNavText: { color: colors.navy, fontSize: typography.body, fontWeight: '700' },
-  nextButtonText: { color: colors.surface, fontSize: typography.body, fontWeight: '700' },
+  nextButtonText: { color: colors.white, fontSize: typography.body, fontWeight: '700' },
   disabledButton: { backgroundColor: colors.background, borderColor: colors.border, opacity: 0.6 },
   disabledNextButton: { backgroundColor: colors.background, borderColor: colors.border, opacity: 0.6 },
   disabledButtonText: { color: colors.textMuted },
-  outcomePrompt: { backgroundColor: colors.surface, borderColor: colors.border, borderWidth: 1, borderRadius: radius.md, padding: spacing.md, marginTop: spacing.lg, shadowColor: colors.navy, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.05, shadowRadius: 7, elevation: 2 },
+  outcomePrompt: { backgroundColor: colors.surface, borderColor: colors.border, borderWidth: 1, borderRadius: radius.md, padding: spacing.md, marginTop: spacing.lg, shadowColor: colors.black, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.05, shadowRadius: 7, elevation: 2 },
   outcomePromptTitle: { flex: 1, color: colors.navy, fontSize: typography.body, lineHeight: 21, fontWeight: '700' },
   outcomePromptText: { color: colors.textMuted, fontSize: typography.caption, lineHeight: 20, marginTop: spacing.xs, marginBottom: spacing.md },
-  solvedButton: { minHeight: 48, alignItems: 'center', justifyContent: 'center', borderRadius: radius.md, padding: spacing.md, backgroundColor: colors.success },
-  outcomeButtonText: { color: colors.surface, fontSize: typography.body, fontWeight: '700' },
+  solvedButton: { minHeight: 48, alignItems: 'center', justifyContent: 'center', borderRadius: radius.md, padding: spacing.md, backgroundColor: colors.successButton },
+  outcomeButtonText: { color: colors.white, fontSize: typography.body, fontWeight: '700' },
   unresolvedButton: { minHeight: 48, alignItems: 'center', justifyContent: 'center', borderRadius: radius.md, padding: spacing.md, borderColor: colors.border, borderWidth: 1, marginTop: spacing.sm },
   unresolvedButtonText: { color: colors.navy, fontSize: typography.body, fontWeight: '700' },
-  solvedCard: { backgroundColor: '#EAF7F1', borderColor: '#B8E0CF', borderWidth: 1, borderRadius: radius.md, padding: spacing.lg, marginTop: spacing.lg },
-  unresolvedCard: { backgroundColor: '#FFF7E8', borderColor: '#F1D39B', borderWidth: 1, borderRadius: radius.md, padding: spacing.lg, marginTop: spacing.lg },
+  solvedCard: { backgroundColor: colors.solvedLight, borderColor: colors.successBorder, borderWidth: 1, borderRadius: radius.md, padding: spacing.lg, marginTop: spacing.lg },
+  unresolvedCard: { backgroundColor: colors.warningSurface, borderColor: colors.warningBorder, borderWidth: 1, borderRadius: radius.md, padding: spacing.lg, marginTop: spacing.lg },
   outcomeTitle: { flex: 1, color: colors.navy, fontSize: typography.heading, lineHeight: 26, fontWeight: '800', marginBottom: spacing.xs },
   outcomeText: { flexBasis: '100%', color: colors.text, fontSize: typography.body, lineHeight: 23, marginTop: spacing.xs },
-  secondaryButton: { alignItems: 'center', borderColor: colors.navy, borderWidth: 1, borderRadius: radius.md, padding: spacing.md, marginTop: spacing.md },
+  secondaryButton: { alignItems: 'center', borderColor: colors.selectedSurface, borderWidth: 1, borderRadius: radius.md, padding: spacing.md, marginTop: spacing.md },
   secondaryButtonText: { color: colors.navy, fontSize: typography.body, fontWeight: '700' },
-});
+}), [colors, shadows]);
+}

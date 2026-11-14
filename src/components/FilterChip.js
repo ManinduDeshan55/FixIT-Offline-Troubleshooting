@@ -1,7 +1,10 @@
+import { useMemo } from 'react';
+import { useTheme } from '../styles/ThemeContext';
 import { Pressable, StyleSheet, Text } from 'react-native';
-import { colors, radius, spacing, typography } from '../styles/theme';
+import { radius, spacing, typography } from '../styles/theme';
 
 export default function FilterChip({ label, selected, onPress }) {
+  const styles = useStyles();
   return (
     <Pressable
       accessibilityRole="button"
@@ -15,9 +18,12 @@ export default function FilterChip({ label, selected, onPress }) {
   );
 }
 
-const styles = StyleSheet.create({
+function useStyles() {
+  const { colors, shadows } = useTheme();
+  return useMemo(() => StyleSheet.create({
   chip: { borderColor: colors.border, borderWidth: 1, borderRadius: radius.pill, paddingHorizontal: spacing.md, paddingVertical: spacing.sm, marginRight: spacing.sm, backgroundColor: colors.surface },
-  selectedChip: { backgroundColor: colors.navy, borderColor: colors.navy },
+  selectedChip: { backgroundColor: colors.selectedSurface, borderColor: colors.selectedSurface },
   label: { color: colors.textMuted, fontSize: typography.caption, fontWeight: '600' },
-  selectedLabel: { color: colors.surface },
-});
+  selectedLabel: { color: colors.white },
+}), [colors, shadows]);
+}

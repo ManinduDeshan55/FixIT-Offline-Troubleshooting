@@ -1,10 +1,13 @@
+import { useMemo } from 'react';
+import { useTheme } from '../styles/ThemeContext';
 import { Pressable, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import categories from '../data/categories.json';
 import guides from '../data/guides.json';
-import { colors, radius, spacing, typography, shadows } from '../styles/theme';
+import { radius, spacing, typography } from '../styles/theme';
 
 export default function CategoriesScreen({ navigation }) {
+  const styles = useStyles();
   const insets = useSafeAreaInsets();
 
   return (
@@ -44,6 +47,7 @@ export default function CategoriesScreen({ navigation }) {
 }
 
 function CategoryIcon({ index }) {
+  const styles = useStyles();
   if (index === 0) return <View style={styles.wifiIcon}><View style={[styles.arc, styles.arcOuter]} /><View style={[styles.arc, styles.arcInner]} /><View style={styles.wifiDot} /></View>;
   if (index === 1) return <View style={styles.barsIcon}><View style={[styles.bar, { height: 9 }]} /><View style={[styles.bar, { height: 14 }]} /><View style={[styles.bar, { height: 11 }]} /><View style={[styles.bar, { height: 18 }]} /></View>;
   if (index === 2) return <View style={styles.noteIcon}><View style={styles.noteStem} /><View style={styles.noteHead} /><View style={styles.noteFlag} /></View>;
@@ -52,7 +56,9 @@ function CategoryIcon({ index }) {
   return <View style={styles.appsIcon}>{[0, 1, 2, 3].map((cell) => <View key={cell} style={styles.appCell} />)}</View>;
 }
 
-const styles = StyleSheet.create({
+function useStyles() {
+  const { colors, shadows } = useTheme();
+  return useMemo(() => StyleSheet.create({
   safeArea: { flex: 1, backgroundColor: colors.background },
   content: { paddingHorizontal: spacing.lg, paddingTop: spacing.lg },
   header: { marginBottom: spacing.lg },
@@ -78,4 +84,5 @@ const styles = StyleSheet.create({
   usbIcon: { width: 23, height: 22, alignItems: 'center', justifyContent: 'flex-end' }, usbTop: { position: 'absolute', top: 1, width: 13, height: 4, borderWidth: 2, borderColor: colors.primary, borderRadius: 2 }, usbBody: { width: 21, height: 14, borderWidth: 2, borderColor: colors.primary, borderRadius: 3, alignItems: 'center', justifyContent: 'center' }, usbSlot: { width: 8, height: 2, borderRadius: 1, backgroundColor: colors.primary },
   deviceIcon: { width: 25, height: 24, alignItems: 'center' }, deviceScreen: { width: 23, height: 16, borderWidth: 2, borderColor: colors.primary, borderRadius: 3, alignItems: 'center', justifyContent: 'center' }, deviceLine: { width: 10, height: 2, borderRadius: 1, backgroundColor: colors.primary }, deviceStand: { width: 11, height: 3, borderBottomWidth: 2, borderColor: colors.primary },
   appsIcon: { width: 22, height: 22, flexDirection: 'row', flexWrap: 'wrap', gap: 3 }, appCell: { width: 9, height: 9, borderRadius: 2, borderWidth: 2, borderColor: colors.primary },
-});
+}), [colors, shadows]);
+}

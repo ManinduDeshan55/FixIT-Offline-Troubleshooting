@@ -1,12 +1,14 @@
+import { useTheme } from '../styles/ThemeContext';
 import { useMemo, useState } from 'react';
 import { Pressable, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import categories from '../data/categories.json';
 import diagnosticRules from '../data/diagnosticRules';
 import guides from '../data/guides.json';
-import { colors, radius, spacing, typography, shadows } from '../styles/theme';
+import { radius, spacing, typography } from '../styles/theme';
 
 export default function DiagnosticWizardScreen({ navigation }) {
+  const styles = useStyles();
   const insets = useSafeAreaInsets();
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
   const [selectedRule, setSelectedRule] = useState(null);
@@ -139,6 +141,7 @@ export default function DiagnosticWizardScreen({ navigation }) {
 }
 
 function StepLabel({ number, label, active, complete }) {
+  const styles = useStyles();
   return (
     <View style={styles.stepLabel}>
       <View style={[styles.stepNumber, active && styles.stepNumberActive, complete && styles.stepNumberComplete]}><Text style={[styles.stepNumberText, (active || complete) && styles.stepNumberTextActive]}>{complete ? '✓' : number}</Text></View>
@@ -147,7 +150,9 @@ function StepLabel({ number, label, active, complete }) {
   );
 }
 
-const styles = StyleSheet.create({
+function useStyles() {
+  const { colors, shadows } = useTheme();
+  return useMemo(() => StyleSheet.create({
   safeArea: { flex: 1, backgroundColor: colors.background },
   content: { padding: spacing.lg, paddingTop: spacing.md },
   intro: { marginBottom: spacing.lg },
@@ -157,7 +162,7 @@ const styles = StyleSheet.create({
   stepRow: { flexDirection: 'row', alignItems: 'center', marginBottom: spacing.lg },
   stepLabel: { alignItems: 'center', minWidth: 58 },
   stepNumber: { width: 28, height: 28, borderRadius: radius.pill, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.border, marginBottom: spacing.xs },
-  stepNumberActive: { backgroundColor: colors.primary },
+  stepNumberActive: { backgroundColor: colors.primaryButton },
   stepNumberComplete: { backgroundColor: colors.successLight },
   stepNumberText: { color: colors.textMuted, fontSize: typography.caption, fontWeight: '700' },
   stepNumberTextActive: { color: colors.white },
@@ -169,16 +174,16 @@ const styles = StyleSheet.create({
   sectionHeadingCopy: { flex: 1, paddingRight: spacing.xs },
   selectedCategory: { color: colors.textMuted, fontSize: typography.caption, marginTop: -spacing.xs },
   textAction: { color: colors.primary, fontSize: typography.overline, fontWeight: '700' },
-  categoryCard: { flexDirection: 'row', alignItems: 'center', backgroundColor: colors.white, borderColor: colors.border, borderWidth: 1, borderRadius: radius.md, padding: spacing.md, marginBottom: spacing.sm, ...shadows.sm },
+  categoryCard: { flexDirection: 'row', alignItems: 'center', backgroundColor: colors.surface, borderColor: colors.border, borderWidth: 1, borderRadius: radius.md, padding: spacing.md, marginBottom: spacing.sm, ...shadows.sm },
   categoryIcon: { width: 42, height: 42, borderRadius: radius.sm, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.blueLight, marginRight: spacing.md },
   categoryIconText: { color: colors.primary, fontSize: typography.heading, fontWeight: '800' },
   categoryCopy: { flex: 1 },
   categoryName: { color: colors.navy, fontSize: typography.body, lineHeight: 21, fontWeight: '700' },
   categoryDescription: { color: colors.textMuted, fontSize: typography.overline, lineHeight: 16, marginTop: 2 },
   chevron: { color: colors.textMuted, fontSize: 26, marginLeft: spacing.sm },
-  symptomCard: { minHeight: 54, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor: colors.white, borderColor: colors.border, borderWidth: 1, borderRadius: radius.md, paddingHorizontal: spacing.md, paddingVertical: spacing.sm, marginBottom: spacing.sm, ...shadows.sm },
+  symptomCard: { minHeight: 54, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor: colors.surface, borderColor: colors.border, borderWidth: 1, borderRadius: radius.md, paddingHorizontal: spacing.md, paddingVertical: spacing.sm, marginBottom: spacing.sm, ...shadows.sm },
   symptomText: { flex: 1, color: colors.text, fontSize: typography.body, lineHeight: 22, fontWeight: '600', paddingRight: spacing.sm },
-  recommendationCard: { backgroundColor: colors.white, borderColor: colors.border, borderWidth: 1, borderRadius: radius.lg, padding: spacing.lg, ...shadows.sm },
+  recommendationCard: { backgroundColor: colors.surface, borderColor: colors.border, borderWidth: 1, borderRadius: radius.lg, padding: spacing.lg, ...shadows.sm },
   recommendationBadge: { alignSelf: 'flex-start', backgroundColor: colors.blueLight, borderRadius: radius.pill, paddingHorizontal: spacing.sm, paddingVertical: spacing.xs, marginBottom: spacing.sm },
   recommendationBadgeText: { color: colors.info, fontSize: typography.overline, fontWeight: '700', letterSpacing: 0.6 },
   guideTitle: { color: colors.navy, fontSize: typography.heading, lineHeight: 27, fontWeight: '800' },
@@ -187,14 +192,15 @@ const styles = StyleSheet.create({
   matchLabel: { color: colors.primary, fontSize: typography.overline, fontWeight: '700', letterSpacing: 0.7 },
   matchSymptom: { color: colors.navy, fontSize: typography.body, lineHeight: 22, fontWeight: '700', marginTop: spacing.xs },
   matchExplanation: { color: colors.textMuted, fontSize: typography.caption, lineHeight: 19, marginTop: spacing.xs },
-  primaryButton: { minHeight: 48, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: colors.primary, borderRadius: radius.md, paddingHorizontal: spacing.md, marginTop: spacing.md },
+  primaryButton: { minHeight: 48, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: colors.primaryButton, borderRadius: radius.md, paddingHorizontal: spacing.md, marginTop: spacing.md },
   primaryButtonText: { color: colors.white, fontSize: typography.body, fontWeight: '700' },
   buttonArrow: { color: colors.white, fontSize: 22, marginLeft: spacing.sm },
   safetyNote: { color: colors.textMuted, fontSize: typography.overline, lineHeight: 16, textAlign: 'center', marginTop: spacing.sm },
-  noMatchCard: { backgroundColor: colors.white, borderColor: colors.border, borderWidth: 1, borderRadius: radius.md, padding: spacing.md, ...shadows.sm },
+  noMatchCard: { backgroundColor: colors.surface, borderColor: colors.border, borderWidth: 1, borderRadius: radius.md, padding: spacing.md, ...shadows.sm },
   noMatchTitle: { color: colors.navy, fontSize: typography.body, lineHeight: 22, fontWeight: '700' },
   noMatchText: { color: colors.textMuted, fontSize: typography.caption, lineHeight: 19, marginTop: spacing.xs },
   backButton: { alignSelf: 'flex-start', minHeight: 44, justifyContent: 'center', marginTop: spacing.md, paddingRight: spacing.md },
   backButtonText: { color: colors.primary, fontSize: typography.caption, fontWeight: '700' },
   pressed: { opacity: 0.78 },
-});
+}), [colors, shadows]);
+}

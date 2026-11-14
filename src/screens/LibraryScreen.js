@@ -1,3 +1,4 @@
+import { useTheme } from '../styles/ThemeContext';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Pressable, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -7,9 +8,10 @@ import { filterGuides } from '../data/guideFilters';
 import FilterChip from '../components/FilterChip';
 import GuideCard from '../components/GuideCard';
 import SearchBar from '../components/SearchBar';
-import { colors, radius, spacing, typography } from '../styles/theme';
+import { radius, spacing, typography } from '../styles/theme';
 
 export default function LibraryScreen({ navigation, route }) {
+  const styles = useStyles();
   const insets = useSafeAreaInsets();
   const [searchText, setSearchText] = useState('');
   const [selectedCategory, setSelectedCategory] = useState(route.params?.categoryId || 'all');
@@ -121,14 +123,16 @@ export default function LibraryScreen({ navigation, route }) {
   );
 }
 
-const styles = StyleSheet.create({
+function useStyles() {
+  const { colors, shadows } = useTheme();
+  return useMemo(() => StyleSheet.create({
   safeArea: { flex: 1, backgroundColor: colors.background },
   content: { padding: spacing.lg, paddingTop: spacing.md },
   headingBlock: { marginBottom: spacing.md },
   eyebrow: { color: colors.primary, fontSize: typography.overline, fontWeight: '700', letterSpacing: 1.2, marginBottom: spacing.xs },
   pageHeading: { color: colors.navy, fontSize: typography.largeTitle, lineHeight: 38, fontWeight: '800', letterSpacing: -0.7 },
   intro: { color: colors.textMuted, fontSize: typography.body, lineHeight: 22, marginTop: spacing.xs },
-  searchShell: { borderRadius: radius.md, marginBottom: spacing.sm, ...({ shadowColor: '#10243A', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.06, shadowRadius: 6, elevation: 2 }) },
+  searchShell: { borderRadius: radius.md, marginBottom: spacing.sm, ...shadows.md },
   filterHeading: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: spacing.sm },
   filterTitle: { color: colors.navy, fontSize: typography.caption, fontWeight: '700', letterSpacing: 0.2 },
   clearText: { color: colors.blue, fontSize: typography.caption, fontWeight: '700' },
@@ -137,11 +141,12 @@ const styles = StyleSheet.create({
   difficultyScroller: { flexGrow: 0, marginBottom: spacing.sm, marginHorizontal: -spacing.lg },
   difficultyRow: { flexDirection: 'row', paddingHorizontal: spacing.lg },
   resultCount: { color: colors.textMuted, fontSize: typography.caption, fontWeight: '600', marginTop: spacing.xs, marginBottom: spacing.md },
-  emptyState: { alignItems: 'center', backgroundColor: colors.surface, borderColor: colors.border, borderWidth: 1, borderRadius: radius.md, padding: spacing.lg, marginTop: spacing.sm, shadowColor: '#10243A', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.05, shadowRadius: 6, elevation: 2 },
+  emptyState: { alignItems: 'center', backgroundColor: colors.surface, borderColor: colors.border, borderWidth: 1, borderRadius: radius.md, padding: spacing.lg, marginTop: spacing.sm, ...shadows.md },
   emptyIcon: { width: 48, height: 48, borderRadius: radius.md, backgroundColor: colors.blueLight, alignItems: 'center', justifyContent: 'center', marginBottom: spacing.sm },
   emptyIconText: { color: colors.primary, fontSize: 28 },
   emptyTitle: { color: colors.navy, fontSize: typography.heading, fontWeight: '700', textAlign: 'center' },
   emptyText: { color: colors.textMuted, fontSize: typography.body, lineHeight: 22, textAlign: 'center', marginTop: spacing.sm },
   emptyButton: { backgroundColor: colors.blue, borderRadius: radius.sm, paddingHorizontal: spacing.md, paddingVertical: spacing.sm, marginTop: spacing.md },
-  emptyButtonText: { color: colors.surface, fontSize: typography.caption, fontWeight: '700' },
-});
+  emptyButtonText: { color: colors.white, fontSize: typography.caption, fontWeight: '700' },
+}), [colors, shadows]);
+}

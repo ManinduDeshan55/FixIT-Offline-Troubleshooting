@@ -7,7 +7,7 @@ export const colors = {
   background: '#F5F7FB',
   surface: '#FFFFFF',
   text: '#172B3A',
-  textMuted: '#64748B',
+  textMuted: '#5F6F82',
   border: '#E2E8F0',
   success: '#10B981',
   // Extended FixIT Precision palette.
@@ -25,6 +25,72 @@ export const colors = {
   infoLight: '#DBEAFE',
   white: '#FFFFFF',
   black: '#000000',
+  error: '#A12929',
+  errorLight: '#FFF0F0',
+  errorBorder: '#F2B8B8',
+  successBorder: '#B8E0CF',
+  warningBorder: '#F3D38A',
+  warningIcon: '#FDE68A',
+  warningText: '#694B18',
+  warningTitle: '#835507',
+  heroText: '#D7E5F2',
+  solvedLight: '#EAF7F1',
+  warningSurface: '#FFF7E8',
+  successText: '#047857',
+  successButton: '#047857',
+  header: '#10243A',
+  headerText: '#FFFFFF',
+  hero: '#10243A',
+  selectedSurface: '#10243A',
+  primaryButton: '#2563EB',
+};
+
+// Static light tokens remain exported for existing imports and non-React use.
+export const lightColors = colors;
+
+export const darkColors = {
+  navy: '#E6F0FF',
+  navyLight: '#233B57',
+  blue: '#60A5FA',
+  blueLight: '#1B3554',
+  background: '#0B1422',
+  surface: '#121F30',
+  text: '#E6EDF7',
+  textMuted: '#A4B3C7',
+  border: '#2A3B50',
+  success: '#34D399',
+  primary: '#60A5FA',
+  secondary: '#29445F',
+  accent: '#38BDF8',
+  textSecondary: '#BCC9D9',
+  divider: '#2A3B50',
+  successLight: '#12382F',
+  warning: '#FBBF24',
+  warningLight: '#3D3018',
+  danger: '#F87171',
+  dangerLight: '#3E2028',
+  info: '#7DB7FF',
+  infoLight: '#1A304C',
+  white: '#F4F7FC',
+  black: '#000000',
+  error: '#F87171',
+  errorLight: '#3E2028',
+  successBorder: '#24634F',
+  warningBorder: '#715725',
+  warningIcon: '#6D531F',
+  warningText: '#F5D994',
+  warningTitle: '#FFE3A3',
+  heroText: '#D7E5F2',
+  solvedLight: '#12382F',
+  warningSurface: '#3D3018',
+  successText: '#6EE7B7',
+  successButton: '#047857',
+  errorBorder: '#74404A',
+  header: '#0A1320',
+  headerText: '#F4F7FC',
+  hero: '#10243A',
+  selectedSurface: '#29445F',
+  primaryButton: '#2563EB',
 };
 
 export const spacing = {
@@ -63,6 +129,13 @@ export const shadows = {
   md: { shadowColor: '#10243A', shadowOffset: { width: 0, height: 3 }, shadowOpacity: 0.09, shadowRadius: 8, elevation: 3 },
   lg: { shadowColor: '#10243A', shadowOffset: { width: 0, height: 8 }, shadowOpacity: 0.12, shadowRadius: 16, elevation: 6 },
 };
+
+export const createShadows = (palette) => ({
+  none: { elevation: 0 },
+  sm: { shadowColor: palette.black, shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.08, shadowRadius: 3, elevation: 1 },
+  md: { shadowColor: palette.black, shadowOffset: { width: 0, height: 3 }, shadowOpacity: 0.12, shadowRadius: 8, elevation: 3 },
+  lg: { shadowColor: palette.black, shadowOffset: { width: 0, height: 8 }, shadowOpacity: 0.16, shadowRadius: 16, elevation: 6 },
+});
 
 export const sizing = {
   iconSm: 16, iconMd: 20, iconLg: 24,

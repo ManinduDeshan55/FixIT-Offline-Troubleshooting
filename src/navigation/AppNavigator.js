@@ -1,9 +1,10 @@
-import { NavigationContainer } from '@react-navigation/native';
+import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StyleSheet, View } from 'react-native';
-import { colors, radius } from '../styles/theme';
+import { radius } from '../styles/theme';
+import { useTheme } from '../styles/ThemeContext';
 import CategoriesScreen from '../screens/CategoriesScreen';
 import DiagnosticWizardScreen from '../screens/DiagnosticWizardScreen';
 import GuideDetailsScreen from '../screens/GuideDetailsScreen';
@@ -31,6 +32,7 @@ function TabIcon({ name, color, focused }) {
 
 function MainTabs() {
   const insets = useSafeAreaInsets();
+  const { colors } = useTheme();
   return (
     <Tab.Navigator
       screenOptions={{
@@ -88,13 +90,27 @@ const styles = StyleSheet.create({
 });
 
 export default function AppNavigator() {
+  const { mode, colors } = useTheme();
+  const baseNavigationTheme = mode === 'dark' ? DarkTheme : DefaultTheme;
+  const navigationTheme = {
+    ...baseNavigationTheme,
+    colors: {
+      ...baseNavigationTheme.colors,
+      primary: colors.primary,
+      background: colors.background,
+      card: colors.surface,
+      text: colors.text,
+      border: colors.border,
+      notification: colors.danger,
+    },
+  };
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={navigationTheme}>
       <Stack.Navigator
         initialRouteName="MainTabs"
         screenOptions={{
-          headerStyle: { backgroundColor: colors.navy },
-          headerTintColor: colors.surface,
+        headerStyle: { backgroundColor: colors.header },
+        headerTintColor: colors.headerText,
           headerTitleStyle: { fontWeight: '700' },
           headerBackTitle: 'Back',
           contentStyle: { backgroundColor: colors.background },

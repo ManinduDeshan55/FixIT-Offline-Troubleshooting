@@ -1,4 +1,5 @@
-import { useCallback, useState } from 'react';
+import { useTheme } from '../styles/ThemeContext';
+import {useCallback, useState, useMemo} from 'react';
 import { Pressable, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { useSQLiteContext } from 'expo-sqlite';
@@ -6,9 +7,10 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import categories from '../data/categories.json';
 import guides from '../data/guides.json';
 import { getAllFavourites, removeFavourite } from '../database/storage';
-import { colors, radius, spacing, typography, shadows } from '../styles/theme';
+import { radius, spacing, typography } from '../styles/theme';
 
 export default function SavedGuidesScreen({ navigation }) {
+  const styles = useStyles();
   const db = useSQLiteContext();
   const insets = useSafeAreaInsets();
   const [savedGuides, setSavedGuides] = useState([]);
@@ -129,7 +131,9 @@ export default function SavedGuidesScreen({ navigation }) {
   );
 }
 
-const styles = StyleSheet.create({
+function useStyles() {
+  const { colors, shadows } = useTheme();
+  return useMemo(() => StyleSheet.create({
   safeArea: { flex: 1, backgroundColor: colors.background },
   content: { padding: spacing.lg, paddingTop: spacing.md },
   intro: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: spacing.lg },
@@ -161,9 +165,10 @@ const styles = StyleSheet.create({
   emptyIcon: { width: 64, height: 64, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.blueLight, borderRadius: radius.lg, marginBottom: spacing.md },
   emptyIconText: { color: colors.primary, fontSize: 38 },
   emptyTitle: { color: colors.navy, fontSize: typography.heading, lineHeight: 26, fontWeight: '800', textAlign: 'center', marginBottom: spacing.sm },
-  browseButton: { minHeight: 48, alignSelf: 'stretch', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: colors.primary, borderRadius: radius.md, paddingHorizontal: spacing.md, marginTop: spacing.lg },
+  browseButton: { minHeight: 48, alignSelf: 'stretch', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: colors.primaryButton, borderRadius: radius.md, paddingHorizontal: spacing.md, marginTop: spacing.lg },
   browseButtonText: { color: colors.white, fontSize: typography.caption, fontWeight: '700' },
   browseArrow: { color: colors.white, fontSize: 22, marginLeft: spacing.sm },
   error: { color: colors.danger, backgroundColor: colors.dangerLight, borderRadius: radius.sm, padding: spacing.md, fontSize: typography.caption, lineHeight: 19, marginBottom: spacing.md },
   pressed: { opacity: 0.78 },
-});
+}), [colors, shadows]);
+}

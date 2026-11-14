@@ -1,7 +1,10 @@
+import { useMemo } from 'react';
+import { useTheme } from '../styles/ThemeContext';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors, radius, spacing, typography } from '../styles/theme';
+import { radius, spacing, typography } from '../styles/theme';
 
 export default function GuideCard({ guide, categoryName, onPress }) {
+  const styles = useStyles();
   const difficultyLabel = guide.difficulty.charAt(0).toUpperCase() + guide.difficulty.slice(1);
 
   return (
@@ -27,7 +30,9 @@ export default function GuideCard({ guide, categoryName, onPress }) {
   );
 }
 
-const styles = StyleSheet.create({
+function useStyles() {
+  const { colors, shadows } = useTheme();
+  return useMemo(() => StyleSheet.create({
   card: { backgroundColor: colors.surface, borderColor: colors.border, borderWidth: 1, borderRadius: radius.md, padding: spacing.md, marginBottom: spacing.md },
   pressed: { opacity: 0.78 },
   topRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
@@ -39,4 +44,5 @@ const styles = StyleSheet.create({
   difficultyBadge: { backgroundColor: colors.blueLight, borderRadius: radius.pill, paddingHorizontal: spacing.sm, paddingVertical: spacing.xs },
   difficultyText: { color: colors.navy, fontSize: 11, fontWeight: '700' },
   time: { color: colors.textMuted, fontSize: typography.caption, marginLeft: spacing.sm },
-});
+}), [colors, shadows]);
+}
