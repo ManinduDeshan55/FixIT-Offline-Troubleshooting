@@ -15,6 +15,7 @@ The application includes 30 guides across six categories, interactive troublesho
 - **Session history:** revisit past sessions and resume sessions that are still in progress.
 - **Troubleshooting Insights:** view session totals by status and a resolution rate calculated from completed outcomes.
 - **Smart Diagnostic Wizard:** select a category and symptom to receive a rule-based recommendation for an existing guide.
+- **Light and Dark Mode:** switch themes from the Home screen. FixIT saves the selected theme locally, restores it when the app restarts and applies it offline.
 
 ## App Screenshots
 
@@ -132,6 +133,7 @@ This offline behavior is separate from development setup: installing npm package
     │   ├── database.js
     │   └── storage.js
     └── styles/
+        ├── ThemeContext.js
         └── theme.js
 ```
 
